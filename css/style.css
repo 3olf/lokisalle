@@ -4,6 +4,11 @@ body {
   padding-bottom: 50px;
 }
 
+/* TEMP */
+.navbar-nav li {
+	font-size:0.8em;
+}
+
 /* DEBUG & MSG INFO */
 
 .debug {
