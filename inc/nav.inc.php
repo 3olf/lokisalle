@@ -1,19 +1,19 @@
 <?php
+$menu_swap="";
 if (userConnectedAdmin()) {
-  $menu_swap = "<li ".active(URL.'boutique.php')."><a href='".URL."boutique.php'>Boutique</a></li>
-                <li ".active(URL.'panier.php')."><a href='".URL."panier.php'>Panier</a></li>
-                <li ".active(URL.'membre.php')." ><a href='".URL."'>Gestion membre</a></li>
-                <li ".active(URL.'admin/gestion_boutique.php')." ><a href='".URL."admin/gestion_boutique.php'>Gestion boutique</a></li>
-                <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commandes.php'>Gestion commande</a></li>
-                <li ".active(URL.'profil.php')." ><a href='".URL."profil.php'>Mon compte</a></li>
-                <li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>";                
+  $menu_swap .= "<li ".active(URL.'admin/gestion_membres.php')."><a href='".URL."admin/gestion_membres.php'>Gestion membres</a></li>
+                <li ".active(URL.'admin/gestin_avis.php')." ><a href='".URL."'>Gestion avis</a></li>
+                <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commande.php'>Gestion commandes</a></li>
+                <li ".active(URL.'admin/gestion_salles.php')." ><a href='".URL."admin/gestion_salles.php'>Gestion salles</a></li>
+                <li ".active(URL.'admin/gestion_produits.php')." ><a href='".URL."admin/gestion_produits.php'>Gestion produit</a></li>";                 
 }
-elseif(userConnected()) 
+if(userConnected()) 
 {
-  $menu_swap = "<li ".active(URL.'fiche_produit.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
+  $menu_swap .= "<li ".active(URL.'fiche_produit.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
                 <li ".active(URL.'panier.php')."><a href='".URL."panier.php'>Panier</a></li>
                 <li ".active(URL.'profil.php')." ><a href='".URL."profil.php'>Mon compte</a></li>
-                <li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>";
+                <li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>
+                <li><a href='#'><span class='glyphicon glyphicon-user'></span>".$_SESSION['utilisateur']['pseudo']."</a></li>";
 
 }
 else 
@@ -32,7 +32,7 @@ else
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" title="Accueil"><span class="glyphicon glyphicon-home"></span></a>
+          <a class="navbar-brand" href="<?php echo URL; ?>index.php" title="Accueil"><span class="glyphicon glyphicon-home"></span></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
