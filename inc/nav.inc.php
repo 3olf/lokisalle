@@ -1,17 +1,16 @@
 <?php
 if (userConnectedAdmin()) {
-  $menu_swap = "<li ".active(URL.'boutique.php')."><a href='".URL."boutique.php'>Boutique</a></li>
-                <li ".active(URL.'panier.php')."><a href='".URL."panier.php'>Panier</a></li>
-                <li ".active(URL.'membre.php')." ><a href='".URL."'>Gestion membre</a></li>
-                <li ".active(URL.'admin/gestion_boutique.php')." ><a href='".URL."admin/gestion_boutique.php'>Gestion boutique</a></li>
+  $menu_swap = "<li ".active(URL.'fiche_produit.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
+                <li ".active(URL.'admin/gestion_produits.php')." ><a href='".URL."admin/gestion_produits.php'>Gestion produits</a></li>
                 <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commandes.php'>Gestion commande</a></li>
+                <li ".active(URL.'admin/gestion_membres.php')." ><a href='".URL."admin/gestion_membres.php'>Gestion salle</a></li>
+                <li ".active(URL.'admin/gestion_salles.php')." ><a href='".URL."admin/gestion_salles.php'>Gestion commande</a></li>
                 <li ".active(URL.'profil.php')." ><a href='".URL."profil.php'>Mon compte</a></li>
                 <li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>";                
 }
 elseif(userConnected()) 
 {
   $menu_swap = "<li ".active(URL.'fiche_produit.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
-                <li ".active(URL.'panier.php')."><a href='".URL."panier.php'>Panier</a></li>
                 <li ".active(URL.'profil.php')." ><a href='".URL."profil.php'>Mon compte</a></li>
                 <li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>";
 
