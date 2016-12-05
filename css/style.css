@@ -1,9 +1,53 @@
+/* GLOBAL */
 body {
-  padding-top: 50px;
+  padding-top: 60px;
   padding-bottom: 50px;
 }
 
-.starter-template {
-  padding: 20px 15px;
-  text-align: center;
+/* DEBUG & MSG INFO */
+
+.debug {
+	background-color: DodgerBlue; 
+	padding: 10px;
+}
+
+.error {
+	background-color: darkred;
+	color:white;
+	font-style: italic;
+	padding: 7px;
+	margin-top: 15px;
+	border-radius: 4px;
+}
+
+.succes {
+	background-color: ForestGreen;
+	color:white;
+	font-style: italic;
+	padding:7px;
+	margin-top: 15px;	
+	border-radius: 4px;
+}
+
+.warning {
+	background-color: DarkOrange;
+	color:white;
+	font-style: italic;
+	padding:7px;
+	margin-top: 15px;	
+	border-radius: 4px;	
+}
+
+/* PAGE GESTION SALLE */
+#table-liste-salles img {
+	max-width: 100px;
+}
+
+#table-liste-salles a {
+	display:inline;
+}
+
+#section-gestion-salle .imgpdt {
+	height:100%;
+	max-width: 200px;
 }
