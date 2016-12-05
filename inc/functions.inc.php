@@ -60,3 +60,14 @@ function active($url)
 		return " class='active' ";
 	}
 }
+
+// FONCTION 
+function checkImgExt() 
+{
+	$exention = strrchr($_FILES['photo_salle']['name'], '.'); // permet de retourner la chaine de caractère contenue après le point (inclu)
+	$exention = strtolower(substr($exention, 1));
+	$tab_ext_valide = array('jpg', 'jpeg', 'png', 'gif');
+	$verif_ext = in_array($exention, $tab_ext_valide); // Teste si le premier argument se trouve dans une des valeurs du tableau argument deux. Renvoie true ou false
+
+	return $verif_ext;
+}
