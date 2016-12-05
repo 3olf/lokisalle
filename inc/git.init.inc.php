@@ -9,3 +9,7 @@ session_start();
 require_once("functions.inc.php"); 
 
 $msg = "";
+
+// CONSTANTES
+define("URL", "/lokisalle/"); 	// Chemin racine site
+define("SERVER_ROOT", $_SERVER['DOCUMENT_ROOT'] );	// Chemin racine serveur
