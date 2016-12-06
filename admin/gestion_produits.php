@@ -1,6 +1,12 @@
 <?php
 require_once("../inc/init.inc.php");
 
+// Si l'utilisateur n'est pas admin on redirige
+if (!userConnectedAdmin()){
+	header('location:index.php');
+	exit();
+} 
+
 // Service gestion des salles
 include("../libs/serv.gestion.produits.php");
 
@@ -13,7 +19,7 @@ include("../inc/nav.inc.php");
 		<!-- debug et messages d'erreur -->
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<?php //debug($mon_produit) ?>
+				<?php //debug($resultat) ?>
 				<?php echo $msg_info ?>
 			</div>
 		</div>
@@ -75,3 +81,6 @@ include("../inc/nav.inc.php");
 		</div>						
 	</div>
 </section>
+<!-- Fin corps de page-->
+<?php
+include("../inc/footer.inc.php");

@@ -1,8 +1,6 @@
 <?php
 require_once("../inc/init.inc.php");
 
-
-
 /******** AFFICHAGE FORM DEFAULT ********/
 
 // VALEUR DEFAUT FORMULAIRE

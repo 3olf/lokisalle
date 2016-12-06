@@ -228,7 +228,7 @@ foreach ($liste_produit as $produit) {
 			$td_produit .= "<td>".$value."</td>";	
 		}		
 	}
-	$td_produit .= "<td><a href='?action=voir&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
+	$td_produit .= "<td><a href='".URL."fiche_produit.php?action=voir&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
 	$tr_produit .= "<tr>".$td_produit."</tr>";
 }
 
@@ -240,3 +240,4 @@ foreach ($liste_produit as $produit) {
 	// ^\d\d\d\d-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (00|[0-9]|1[0-9]|2[0-3]):([0-9]|[0-5][0-9]):([0-9]|[0-5][0-9])$ => regex DATETIME
 
 // SELECT COUNT(id_produit) FROM produit WHERE id_salle = 3 AND date_arrivee BETWEEN '2016-12-01 12:12:00' AND '2016-12-20 09:00:00' OR date_depart BETWEEN '2016-12-01 12:12:00' AND '2016-12-20 09:00:00'
+
