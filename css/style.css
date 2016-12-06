@@ -84,7 +84,7 @@ body {
 
 #section-fiche-produit h2 {
 	font-size:1.8em;
-	margin:0;
+	margin:16px 0 0 0;
 }
 
 #section-fiche-produit h4 {
@@ -92,6 +92,19 @@ body {
 	margin:0;
 }
 
+#section-fiche-produit .h4infos {
+	margin-top:12px;
+}
+
 #section-fiche-produit hr {
 	margin:8px;
+}
+
+#section-fiche-produit img {
+	max-width:100%;
+}
+
+#section-fiche-produit #note-produit {
+	padding-left:6px;
+	font-size:1.4em;
 }

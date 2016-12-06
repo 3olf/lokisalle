@@ -21,11 +21,24 @@ if(isset($_POST['date_arrivee']) && isset($_POST['date_depart']) && isset($_POST
 	if (empty($_POST['date_arrivee']) || !preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_POST['date_arrivee'])) {
 		$msg_info .= "<p class='error'>Date arrivée non valide</p>";
 	}
+	if (new DateTime($_POST['date_arrivee']) < new DateTime(date("d-m-Y H:i")))
+	{
+		$msg_info .= "<p class='error'>La date d'arrivée doit correspondre à une date future</p>";
+	}
 
 		// Date départ
 	if (empty($_POST['date_depart']) || !preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_POST['date_depart'])) {
 		$msg_info .= "<p class='error'>Date départ non valide</p>";
 	}
+	if (new DateTime($_POST['date_depart']) < new DateTime(date("d-m-Y H:i")))
+	{
+		$msg_info .= "<p class='error'>La date de départ doit correspondre à une date future</p>";
+	}
+	if (new DateTime($_POST['date_depart']) < new DateTime($_POST['date_arrivee']))
+	{
+		$msg_info .= "<p class='error'>La date de départ doit correspondre à une date future à la date d'arrivée</p>";
+	}
+			
 		// Prix
 	if (empty($_POST['prix']) || !preg_match("#[0-9]#", $_POST['prix'])) {
 		$msg_info .= "<p class='error'>Prix non valide</p>";
@@ -39,7 +52,8 @@ if(isset($_POST['date_arrivee']) && isset($_POST['date_depart']) && isset($_POST
 	}
 
 	// Transformation du $_POST salle pour récupérer l'id en INT
-	$_POST['id_salle'] = (int)substr($_POST['id_salle'], 0, 1);
+	$recup_id_salle = explode(" - ", $_POST['id_salle']);
+	$_POST['id_salle'] = (int)$recup_id_salle[0];
 
 	// Transformation prix en INT
 	$_POST['prix'] = (int)$_POST['prix'];

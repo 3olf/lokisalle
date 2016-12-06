@@ -9,12 +9,12 @@ include("inc/nav.inc.php");
 ?>
 	<section id="section-fiche-produit">
 		<div class="container">
-		<?php debug($resultat); ?>
+		<?php //debug($retour); ?>
 			<div class="row">
 				<div class="col-sm-12">
 					<h1><?php echo mb_ucfirst($titre_salle) ?></h1>
 					<div id="note-produit">
-						3 étoiles
+						<?= $note_produit ?>
 					</div>
 					<?= $btn_reservation ?>
 					<div class="clearfix"></div>
@@ -30,7 +30,7 @@ include("inc/nav.inc.php");
 					<p><?= $description_salle ?></p>
 				</div>
 				<div class="col-sm-12">
-					<h4><strong>Informations complémentaires</strong></h4>
+					<h4 class="h4infos"><strong>Informations complémentaires</strong></h4>
 					<div class="col-sm-4"><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?= $date_arrivee ?></div>
 					<div class="col-sm-4"><span class="glyphicon glyphicon-user"></span> Capacité : <?= $capacite_salle ?> places</div>
 					<div class="col-sm-4"><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?php echo $adresse_salle.", ".$cp_salle.", ".$ville_salle ?></div>
@@ -47,16 +47,16 @@ include("inc/nav.inc.php");
 			<hr>
 			<div class="row">
 				<div class="col-sm-3">
-					Pdt1
+					<a href="?action=voir&id=<?= $retour[$pdt_tires[0]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[0]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[0]]["titre_salle"] ?>"></a>
 				</div>
 				<div class="col-sm-3">
-					Pdt2
+					<a href="?action=voir&id=<?= $retour[$pdt_tires[1]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[1]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[1]]["titre_salle"] ?>"></a>
 				</div>
 				<div class="col-sm-3">
-					pdt3
+					<a href="?action=voir&id=<?= $retour[$pdt_tires[2]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[2]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[2]]["titre_salle"] ?>"></a>
 				</div>
 				<div class="col-sm-3">
-					pdt4
+					<a href="?action=voir&id=<?= $retour[$pdt_tires[3]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[3]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[3]]["titre_salle"] ?>"></a>
 				</div>
 			</div>
 			<hr>

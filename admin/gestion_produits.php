@@ -19,7 +19,7 @@ include("../inc/nav.inc.php");
 		<!-- debug et messages d'erreur -->
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<?php //debug($resultat) ?>
+				<?php debug( date("d-m-Y H:i")) ?>
 				<?php echo $msg_info ?>
 			</div>
 		</div>
