@@ -61,7 +61,7 @@ function active($url)
 	}
 }
 
-// FONCTION 
+// FONCTION VERIFICATION FORMAT IMAGE
 function checkImgExt() 
 {
 	$exention = strrchr($_FILES['photo_salle']['name'], '.'); // permet de retourner la chaine de caractère contenue après le point (inclu)

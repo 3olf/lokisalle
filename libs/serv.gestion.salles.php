@@ -182,8 +182,6 @@ if(isset($_POST['titre_salle']) && isset($_POST['description_salle']) && isset($
 			// Message de validation
 			$msg_info .= "<p class='succes'> Modification effectuée </p>";								
 		}
-
-
 	}	
 }
 
@@ -234,8 +232,6 @@ if (isset($_GET['id']) && $_GET['action'] == 'supprimer')
 	{
 		$msg_info .= "<p class='error'> Salle inexistante </p>";		
 	}
-
-
 }
 
 /******** FIN ENREGISTREMENT / MODIFICATION / SUPPRESSION SALLE ********/
