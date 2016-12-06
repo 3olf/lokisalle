@@ -2,8 +2,8 @@
 $menu_swap="";
 if (userConnectedAdmin()) {
   $menu_swap .= "<li ".active(URL.'admin/gestion_membres.php')."><a href='".URL."admin/gestion_membres.php'>Gestion membres</a></li>
-                <li ".active(URL.'admin/gestin_avis.php')." ><a href='".URL."'>Gestion avis</a></li>
-                <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commande.php'>Gestion commandes</a></li>
+                <li ".active(URL.'admin/gestion_avis.php')." ><a href='".URL."admin/gestion_avis.php'>Gestion avis</a></li>
+                <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commandes.php'>Gestion commandes</a></li>
                 <li ".active(URL.'admin/gestion_salles.php')." ><a href='".URL."admin/gestion_salles.php'>Gestion salles</a></li>
                 <li ".active(URL.'admin/gestion_produits.php')." ><a href='".URL."admin/gestion_produits.php'>Gestion produit</a></li>";                 
 }
