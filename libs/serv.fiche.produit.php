@@ -226,6 +226,6 @@ elseif (isset($_GET['action']) && $_GET['action'] == 'reserver' && isset($_GET['
 }
 else
 {
-	header('location:../index.php');
+	header('location:index.php');
 	exit();
 }

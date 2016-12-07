@@ -67,7 +67,7 @@ if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && 
 
 }
 	$filtre="WHERE ".implode($filtre, " AND ");
-	debug($filtre);
+	//debug($filtre);
 
 //liste pour le filtre
 $resultat_ville=$pdo->query("SELECT DISTINCT ville_salle FROM salle");

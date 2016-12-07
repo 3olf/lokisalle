@@ -7,7 +7,7 @@ if (!userConnected()){
 	header('location:index.php');
 	exit();
 } 
-debug($_SESSION['utilisateur']);
+//debug($_SESSION['utilisateur']);
 extract($_SESSION['utilisateur']);
 
 
