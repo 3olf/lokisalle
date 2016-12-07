@@ -3,7 +3,7 @@ require_once('../inc/init.inc.php');
 
 //si l'utilisateur est connecté et admin
 if (!userConnectedAdmin()){
-	header('location:index.php');
+	header('location:../index.php');
 	exit();
 } 
 

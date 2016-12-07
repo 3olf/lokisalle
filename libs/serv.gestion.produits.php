@@ -21,11 +21,24 @@ if(isset($_POST['date_arrivee']) && isset($_POST['date_depart']) && isset($_POST
 	if (empty($_POST['date_arrivee']) || !preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_POST['date_arrivee'])) {
 		$msg_info .= "<p class='error'>Date arrivée non valide</p>";
 	}
+	if (new DateTime($_POST['date_arrivee']) < new DateTime(date("d-m-Y H:i")))
+	{
+		$msg_info .= "<p class='error'>La date d'arrivée doit correspondre à une date future</p>";
+	}
 
 		// Date départ
 	if (empty($_POST['date_depart']) || !preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_POST['date_depart'])) {
 		$msg_info .= "<p class='error'>Date départ non valide</p>";
 	}
+	if (new DateTime($_POST['date_depart']) < new DateTime(date("d-m-Y H:i")))
+	{
+		$msg_info .= "<p class='error'>La date de départ doit correspondre à une date future</p>";
+	}
+	if (new DateTime($_POST['date_depart']) < new DateTime($_POST['date_arrivee']))
+	{
+		$msg_info .= "<p class='error'>La date de départ doit correspondre à une date future à la date d'arrivée</p>";
+	}
+			
 		// Prix
 	if (empty($_POST['prix']) || !preg_match("#[0-9]#", $_POST['prix'])) {
 		$msg_info .= "<p class='error'>Prix non valide</p>";
@@ -39,7 +52,8 @@ if(isset($_POST['date_arrivee']) && isset($_POST['date_depart']) && isset($_POST
 	}
 
 	// Transformation du $_POST salle pour récupérer l'id en INT
-	$_POST['id_salle'] = (int)substr($_POST['id_salle'], 0, 1);
+	$recup_id_salle = explode(" - ", $_POST['id_salle']);
+	$_POST['id_salle'] = (int)$recup_id_salle[0];
 
 	// Transformation prix en INT
 	$_POST['prix'] = (int)$_POST['prix'];
@@ -228,7 +242,7 @@ foreach ($liste_produit as $produit) {
 			$td_produit .= "<td>".$value."</td>";	
 		}		
 	}
-	$td_produit .= "<td><a href='?action=voir&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
+	$td_produit .= "<td><a href='".URL."fiche_produit.php?action=voir&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
 	$tr_produit .= "<tr>".$td_produit."</tr>";
 }
 
@@ -240,3 +254,4 @@ foreach ($liste_produit as $produit) {
 	// ^\d\d\d\d-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (00|[0-9]|1[0-9]|2[0-3]):([0-9]|[0-5][0-9]):([0-9]|[0-5][0-9])$ => regex DATETIME
 
 // SELECT COUNT(id_produit) FROM produit WHERE id_salle = 3 AND date_arrivee BETWEEN '2016-12-01 12:12:00' AND '2016-12-20 09:00:00' OR date_depart BETWEEN '2016-12-01 12:12:00' AND '2016-12-20 09:00:00'
+
