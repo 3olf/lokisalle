@@ -78,12 +78,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'voir' && isset($_GET['id']))
 		$indice++;
 	}
 
-	// for ($i = 0; $i < 4; $i++)
-	// {
-
-	// }
-
-
 }
 else
 {
