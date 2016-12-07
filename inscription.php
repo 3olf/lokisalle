@@ -88,6 +88,7 @@ if (isset($_POST['nom']) && isset($_POST['prenom'])  && isset($_POST['mdp'])  &&
 			$_SESSION['utilisateur']['email']=$email;
 			$_SESSION['utilisateur']['civilite']=$civilite;
 			$_SESSION['utilisateur']['statut']=$statut;
+			$_SESSION['utilisateur']['id_membre']=$pdo->lastInsertId();
 
 		}
 		else{

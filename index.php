@@ -2,18 +2,22 @@
 require_once("inc/init.inc.php");
 
 $filtre="";
-$date_arrivee= date("Y-m-d H:i:s"); //par défaut, la date du jour
-$date_depart='';
-$prix=3000;   //le plus cher par defaut
-$capacite=0; 
+$date_arrivee= new DateTime(date('Y-m-d H:i:s'));
+$date_depart="";
 
-if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && isset($_GET['prix']) ){
+$prix=3000;   //le plus cher par defaut
+$capacite=0;
+$filtre=array('p.etat="libre"', 'p.date_arrivee>"'.$date_arrivee->format("Y-m-d H:i:s").'"');
+
+
+//convertion des dates :
+
+if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && isset($_GET['prix']) && isset($_GET['date_arrivee']) && isset($_GET['date_depart'])){
 
 	foreach ($_GET as $key => $value) {
 		$_GET[$key]=htmlentities($value,ENT_QUOTES);
 	}
 
-	$filtre=[];
 
 	if (!empty($_GET['cat']) && $_GET['cat'] != "tous"){
 		array_push($filtre, "s.categorie_salle='".$_GET['cat']."'");
@@ -31,20 +35,39 @@ if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && 
 		$prix=$_GET['prix'];
 	}
 
-	if (!empty($_GET['prix'])){
-		array_push($filtre, "p.prix<".$_GET['prix']);
-		$prix=$_GET['prix'];
+
+	/*
+
+	if (empty($_GET['date_arrivee']) || preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_GET['date_arrivee'])) {
+		if (empty($_GET['date_arrivee'])){
+			$date_arrivee= new DateTime(date('Y-m-d H:i:s'));
+		}
+		else{
+			$date_arrivee= $_GET['date_arrivee'];
+			$date_arrivee= strtotime($_GET['date_arrivee']);
+		}
+		array_push($filtre, "p.date_arrivee>".$date_arrivee->date);
 	}
 
-	if (!empty($_GET['date_depart']))
+
+		// Date départ
+	if (empty($_GET['date_depart']) || preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_GET['date_depart'])) {
+		if (empty($_GET['date_depart'])){
+			$date_depart= new DateTime(date('Y-m-d H:i:s').'+ 20 year' );
+		}
+		else{
+			$date_depart= $_GET['date_depart'];
+		}
+		array_push($filtre, "p.date_depart<".$date_depart->date);
+		$date_depart="";
+	}
+	*/
 	
-	//if(!empty($_GET['date_depart']) XOR)
 
 
+}
 	$filtre="WHERE ".implode($filtre, " AND ");
 	debug($filtre);
-	debug($date_arrivee);
-}
 
 //liste pour le filtre
 $resultat_ville=$pdo->query("SELECT DISTINCT ville_salle FROM salle");
@@ -103,12 +126,12 @@ include("inc/nav.inc.php");
 
 					<!-- ajouter du javascript pour afficher la valeur des input dessous -->
 		  			<div class="form-group">
-			  			<label for="capacite"> capacite minimum : <span id="capaciteFiltre"></span></label>
+			  			<label for="capacite"> capacite minimum : <span id="capaciteFiltre"><?= $capacite ?></span></label>
 			  			<input id="capacite" type="range" value="<?= $capacite ?>" max="500" min="0" step="20" name="capacite">
 					</div>
 
 					<div class="form-group">
-						<label for="prix"> prix maximum : <span id="prixFiltre"></span></label>
+						<label for="prix"> prix maximum : <span id="prixFiltre"><?= $prix ?></span></label>
 						<input type="range" value="<?= $prix ?>" max="3000" min="0" step="300" name="prix" id="prix">
 					</div>
 
@@ -118,14 +141,14 @@ include("inc/nav.inc.php");
 						<label for="date-arrive-pdt">Date d'arrivée</label>
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control" name="date_arrivee" id="date-arrive-pdt" placeholder="JJ-MM-AAAA HH:MM" value="<?= $date_arrivee ?>">
+							<input type="text" class="form-control datepicker" name="date_arrivee" id="date-arrive-pdt" placeholder="MM/JJ/YYYY" value="<?= $date_arrivee->format('m/d/Y') ?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="date-depart-pdt">Date de départ</label>
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control" name="date_depart" id="date-depart-pdt" placeholder="JJ-MM-AAAA HH:MM" value="<?= $date_depart ?>">
+							<input type="text" class="form-control datepicker" name="date_depart" id="date-depart-pdt" placeholder="not ready" value="">
 						</div>
 					</div>
 
@@ -141,6 +164,7 @@ include("inc/nav.inc.php");
 				LEFT JOIN avis a ON a.id_salle=s.id_salle
 				$filtre
 				GROUP BY p.id_produit");
+			$date_depart="";
 			//joindre avec la note moyenne !
 				  	echo "<div class='row'>";
 				  	$compteur_ligne=0;
@@ -166,7 +190,7 @@ include("inc/nav.inc.php");
 							}
 
 							echo ' ('.$nb_note.' avis)</p>';
-							echo '<a class="btn btn-default" href="fiche_produit.php?action=voir&id='.$id_produit.'""><span class="glyphicon glyphicon-search"></span></a>';
+							echo '<a class="btn btn-default" href="fiche_produit.php?action=voir&id='.$id_produit.'"><span class="glyphicon glyphicon-search"></span></a>';
 
 					  		echo "</div>";
 					  		$compteur_ligne++;
