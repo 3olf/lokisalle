@@ -7,7 +7,7 @@ $date_depart="";
 
 $prix=3000;   //le plus cher par defaut
 $capacite=0;
-$filtre=array('p.etat="libre"', 'p.date_arrivee>"'.$date_arrivee->format("Y-m-d H:i:s").'"');
+$filtre=array('p.etat="libre"', 'p.date_arrivee >"'.$date_arrivee->format("Y-m-d H:i:s").'"');
 
 
 //convertion des dates :
@@ -67,7 +67,7 @@ if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && 
 
 }
 	$filtre="WHERE ".implode($filtre, " AND ");
-	//debug($filtre);
+	debug($filtre);
 
 //liste pour le filtre
 $resultat_ville=$pdo->query("SELECT DISTINCT ville_salle FROM salle");
