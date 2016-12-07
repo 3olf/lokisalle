@@ -9,7 +9,7 @@ include("inc/nav.inc.php");
 ?>
 	<section id="section-fiche-produit">
 		<div class="container">
-		<?php //debug($retour); ?>
+		<?php //debug($_SERVER); //debug($_SERVER['PHP_SELF']); ?>
 			<div class="row">
 				<div class="col-sm-12">
 					<h1><?php echo mb_ucfirst($titre_salle) ?></h1>
@@ -62,13 +62,39 @@ include("inc/nav.inc.php");
 			<hr>
 			<div class="row">
 				<div class="col-sm-4">
-					Deposer un commentaire
+					<?php if(userConnected()) { 
+					echo $msg_info;
+					?>
+					<h4><strong>Laisser un message</strong></h4>
+					<form method="post" action="">
+						<div class="form-group">
+							<label for="commentaire_salle">Commentaire</label>
+							<textarea name="commentaire" id="commentaire_salle" class="form-control" rows="4" placeholder="Laisser un commentaire"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="note_salle">Note</label>
+							<select name="note" id="note_salle" class="form-control" required="required">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default">
+						</div>
+					</form>
+					<?php } else { ?>
+						<p><a href="<?= $url_page_encours ?>">Connectez vous</a> pour déposer un commentaire</p>
+					<?php } ?>
 				</div>
 				<div class="col-sm-4">
-					Commentaires
+					<h4><strong>Commentaires</strong></h4>
+					<?= $commentaires ?>
 				</div>
 				<div class="col-sm-4">
-					Retour vers le catalogue
+					<p class="pull-right"><a href="index.php">Retour vers le catalogue</a></p>
 				</div>
 			</div>			
 		</div>

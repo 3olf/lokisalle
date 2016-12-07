@@ -43,76 +43,80 @@ if (isset($_GET['action']) && $_GET['action']=="suppression" && isset($_GET['id'
 include('../inc/header.inc.php');
 include('../inc/nav.inc.php');
 ?>
+<section id="section-gestion-membres">
+	<div class="container">
 
-<div class="container">
+		<h1>Gestion des membres</h1>
+		<hr>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-striped table-bordered table-hover" id="table-liste-membres">
+					<thead>
+						<tr>
+							<?php
+							//Preparation de la liste des membres
 
-	<h1>Back-office, Gestion des membres</h1>
+							//en_têtes :
 
+							$resultat_liste_membre = $pdo->query("SELECT m.id_membre, m.pseudo, m.nom, m.prenom, m.email, m.civilite, m.statut, m.date_enregistrement FROM membre m");
+							
+							$nb_champs = $resultat_liste_membre->columnCount();
+							for ($i=0; $i < $nb_champs; $i++) {
+							    $meta = $resultat_liste_membre->getColumnMeta($i);
+							    echo '<th>' . $meta['name'] . '</th>';
+							}
+							?>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php 
 
-	<h2>Liste des membres</h2>
+				//données de la table :
 
-	<table class="table table-bordered">
-		<tr>
+					$resultat_liste_membre = $pdo->query("SELECT m.id_membre, m.pseudo, m.nom, m.prenom, m.email, m.civilite, m.statut, m.date_enregistrement FROM membre m");
+					while ($ligne=$resultat_liste_membre->fetch(PDO::FETCH_ASSOC)){
+						
+						echo "<tr>";
+						foreach ($ligne as $key => $value) {
+							echo '<td>'.$value.'</td>';
+						}
 
-	<?php
-	//Preparation de la liste des membres
+						//ajout d'une colonne pour les actions modif /suppr
+						echo '<td><a href="?action=modification&id='. $ligne['id_membre'] .'" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil"></span></a>';
+						echo '<a href="?action=suppression&id='. $ligne['id_membre'] .'"  class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
+						echo "</td></tr>";
+					}
+					echo '</tbody>';
+				echo '</table>';
 
-	//en_têtes :
+				echo $msg_info;
 
-	$resultat_liste_membre = $pdo->query("SELECT m.id_membre, m.pseudo, m.nom, m.prenom, m.email, m.civilite, m.statut, m.date_enregistrement FROM membre m");
-	
-	$nb_champs = $resultat_liste_membre->columnCount();
-	for ($i=0; $i < $nb_champs; $i++) {
-	    $meta = $resultat_liste_membre->getColumnMeta($i);
-	    echo '<th>' . $meta['name'] . '</th>';
-	}
-	?>
-			<th>actions</th>
-		</tr>
-		<?php 
+			//affichage du formulaire de modification
 
-	//données de la table :
+			if (isset($_GET['action']) && $_GET['action']=="modification" && isset($_GET['id']) && preg_match('#[0-9]{1,3}#', $_GET['id'])){ 
+				$resultat_id_recherche=$pdo->query("SELECT id_membre, pseudo, statut FROM membre WHERE id_membre='$_GET[id]'");
+				$membre_modifie=$resultat_id_recherche->fetch(PDO::FETCH_ASSOC);
+				extract($membre_modifie);
+				if ($statut==1){$newstatut=0;}else{$newstatut=1;}
+			?>
+				<h3>Modification du statut de <?= $pseudo ?></h3>
+				<p><?= $pseudo ?> possède actuellement un accès <?php 
+				if($statut=="1"){
+					echo "administrateur, voulez-vous lui supprimer ses droits administrateur ?";
+				}
+				else{
+					echo "visiteur simple, voulez-vous lui conférer des droits administrateur ?";
+				} ?></p>
+				<a href=?action=switchstatut&newstatut=<?= $newstatut ?>&id=<?= $id_membre ?> class="btn btn-primary"><span class="glyphicon glyphicon-transfer"></span></a>
 
-		$resultat_liste_membre = $pdo->query("SELECT m.id_membre, m.pseudo, m.nom, m.prenom, m.email, m.civilite, m.statut, m.date_enregistrement FROM membre m");
-		while ($ligne=$resultat_liste_membre->fetch(PDO::FETCH_ASSOC)){
-			
-			echo "<tr>";
-			foreach ($ligne as $key => $value) {
-				echo '<td>'.$value.'</td>';
-			}
-
-			//ajout d'une colonne pour les actions modif /suppr
-			echo '<td><a href="?action=modification&id='. $ligne['id_membre'] .'" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil"></span></a>';
-			echo '<a href="?action=suppression&id='. $ligne['id_membre'] .'"  class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
-			echo "</td></tr>";
-		}
-	echo '</table>';
-
-	echo $msg_info;
-
-//affichage du formulaire de modification
-
-if (isset($_GET['action']) && $_GET['action']=="modification" && isset($_GET['id']) && preg_match('#[0-9]{1,3}#', $_GET['id'])){ 
-	$resultat_id_recherche=$pdo->query("SELECT id_membre, pseudo, statut FROM membre WHERE id_membre='$_GET[id]'");
-	$membre_modifie=$resultat_id_recherche->fetch(PDO::FETCH_ASSOC);
-	extract($membre_modifie);
-	if ($statut==1){$newstatut=0;}else{$newstatut=1;}
-?>
-	<h3>Modification du statut de <?= $pseudo ?></h3>
-	<p><?= $pseudo ?> possède actuellement un accès <?php 
-	if($statut=="1"){
-		echo "administrateur, voulez-vous lui supprimer ses droits administrateur ?";
-	}
-	else{
-		echo "visiteur simple, voulez-vous lui conférer des droits administrateur ?";
-	} ?></p>
-	<a href=?action=switchstatut&newstatut=<?= $newstatut ?>&id=<?= $id_membre ?> class="btn btn-primary"><span class="glyphicon glyphicon-transfer"></span></a>
-
+				<?php
+				}
+				?>
+			</div>
+		</div>
+	</div>
+</section>
 <?php
-}
-
-
-echo '</div>';
-
 include('../inc/footer.inc.php');
 

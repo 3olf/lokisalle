@@ -1,5 +1,12 @@
 <?php
 
+// On redirige l'utilisateur s'il passer par l'url directe de la page
+if (PAGE_AUTORISEE != "true")
+{
+	header('location:../index.php');
+	exit();
+}
+
 /******** AFFICHAGE FORM DEFAULT ********/
 $options_salles = ""; $id_salle=""; $prix=""; $date_arrivee=""; $date_depart="";
 // Submit
@@ -123,6 +130,7 @@ if(isset($_POST['date_arrivee']) && isset($_POST['date_depart']) && isset($_POST
 if (isset($_GET['id']) && $_GET['action'] == 'modifier') 
 {
 	// Requête BDD pour récupérer les valeurs 
+	$_GET['id'] = htmlentities($_GET['id'], ENT_QUOTES);
 	$id_produit = (int)$_GET['id'];
 	$resultat = $pdo->query("SELECT * FROM produit WHERE id_produit ='$id_produit'");
 	$mon_produit = $resultat->fetch(PDO::FETCH_ASSOC);
@@ -139,6 +147,7 @@ if (isset($_GET['id']) && $_GET['action'] == 'modifier')
 /* SUPPRESSION PRODUIT */
 if (isset($_GET['id']) && $_GET['action'] == 'supprimer') 
 {
+	$_GET['id'] = htmlentities($_GET['id'], ENT_QUOTES);
 	$id_produit = (int)$_GET['id'];
 	
 	// Vérification que la salle existe avant suppression

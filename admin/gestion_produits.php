@@ -14,19 +14,21 @@ include("../inc/header.inc.php");
 include("../inc/nav.inc.php");
 ?>
 
-<section>
-	<div class="container" id="section-gestion-produit">
+<section id="section-gestion-produits">
+	<div class="container">
+		<h1>Gestion des produits</h1>
+		<hr>
 		<!-- debug et messages d'erreur -->
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<?php debug( date("d-m-Y H:i")) ?>
+				<?php //debug($_SERVER) ?>
 				<?php echo $msg_info ?>
 			</div>
 		</div>
 		<!-- Liste produits -->
 		<div class="row">
 			<div class="col-sm-12">
-				<table class="table table-striped table-bordered table-hover" id="table-liste-salles">
+				<table class="table table-striped table-bordered table-hover" id="table-liste-produits">
 					<thead>
 						<tr><?= $content_thead ?></tr>
 					</thead>
