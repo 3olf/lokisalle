@@ -1,4 +1,5 @@
 <?php
+
 $menu_swap="";
 if (userConnectedAdmin()) {
   $menu_swap .= "<li ".active(URL.'admin/gestion_membres.php')."><a href='".URL."admin/gestion_membres.php'>Gestion membres</a></li>

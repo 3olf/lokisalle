@@ -44,7 +44,7 @@ body {
 }
 
 /* PAGE GESTION SALLE */
-#table-liste-salles img {
+#table-liste-salles img, #table-liste-produits img {
 	max-width: 100px;
 }
 
@@ -52,7 +52,7 @@ body {
 	display:inline;
 }
 
-#section-gestion-salle .imgpdt {
+#section-gestion-salles .imgpdt {
 	height:100%;
 	max-width: 200px;
 }

@@ -25,12 +25,25 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])){
 				$_SESSION['utilisateur'][$indice]=$valeur;
 			}
 		}
-		header("location:index.php");
+	    // Redirection 
+	    if(isset($_GET['page']) && $_GET['page'] == 'produit' && isset($_GET['id'])) {
+	    	// Si l'utilisateur provient d'une page produit
+	    	header('location:fiche_produit.php?action=voir&id='.$_GET['id']);
+	    	exit();
+	    }
+	    else
+	    {
+	    	// Dans tous les autres cas
+	    	header("location:profil.php");
+	    	exit();
+		}
 	}
 	else{
 		$msg_info.="<div class='erreur'>Votre pseudo et/ou votre mot de passe est invalide.</div>";
 	}
 }
+
+
 
 
 include("inc/header.inc.php");

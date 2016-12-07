@@ -1,5 +1,11 @@
 <?php
-require_once("../inc/init.inc.php");
+
+// On redirige l'utilisateur s'il passer par l'url directe de la page
+if (PAGE_AUTORISEE != "true")
+{
+	header('location:../index.php');
+	exit();
+}
 
 /******** AFFICHAGE FORM DEFAULT ********/
 
@@ -188,6 +194,7 @@ if(isset($_POST['titre_salle']) && isset($_POST['description_salle']) && isset($
 if (isset($_GET['id']) && $_GET['action'] == 'modifier') 
 {
 	// Requête BDD pour récupérer les valeurs 
+	$_GET['id'] = htmlentities($_GET['id'], ENT_QUOTES);
 	$id_salle = (int)$_GET['id'];
 	$resultat = $pdo->query("SELECT * FROM salle WHERE id_salle='$id_salle'");
 	$ma_salle = $resultat->fetch(PDO::FETCH_ASSOC);
@@ -202,6 +209,7 @@ if (isset($_GET['id']) && $_GET['action'] == 'modifier')
 /* SUPPRESSION SALLE */
 if (isset($_GET['id']) && $_GET['action'] == 'supprimer') 
 {
+	$_GET['id'] = htmlentities($_GET['id'], ENT_QUOTES);
 	$id_salle = (int)$_GET['id'];
 	
 	// Vérification que la salle existe avant suppression
@@ -302,7 +310,7 @@ foreach ($liste_salles as $salle) {
 			$td_salle .= "<td>".$value."</td>";	
 		}		
 	}
-	$td_salle .= "<td><a href='?action=voir&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
+	$td_salle .= "<td><a href='?action=modifier&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
 	$tr_salle .= "<tr>".$td_salle."</tr>";
 }
 

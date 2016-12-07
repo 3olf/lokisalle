@@ -13,8 +13,10 @@ include("../libs/serv.gestion.salles.php");
 include("../inc/header.inc.php");
 include("../inc/nav.inc.php");
 ?>
-	<section id="section-gestion-salle">
+	<section id="section-gestion-salles">
 		<div class="container">
+			<h1>Gestion des salles</h1>
+			<hr>	
 			<!-- debug et messages d'erreur -->
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
