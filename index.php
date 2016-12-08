@@ -1,24 +1,23 @@
 <?php
 require_once("inc/init.inc.php");
 
+/***************** CONSTRUCTION REQUETE TRI PRODUITS *****************/
 $filtre="";
-$date_arrivee= new DateTime(date('Y-m-d H:i:s'));
+$date_arrivee= "";
 $date_depart="";
-
 $prix=3000;   //le plus cher par defaut
 $capacite=0;
-$filtre=array('p.etat="libre"', 'p.date_arrivee >"'.$date_arrivee->format("Y-m-d H:i:s").'"');
+$filtre=array("p.etat='libre'");
 
 
-//convertion des dates :
+if (isset($_GET['cat']) || isset($_GET['ville']) || isset($_GET['capacite']) || isset($_GET['prix']) || isset($_GET['date_arrivee']) || isset($_GET['date_depart'])){
 
-if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && isset($_GET['prix']) && isset($_GET['date_arrivee']) && isset($_GET['date_depart'])){
-
+	/* HTMLENTITIES pour matcher sur la BDD */
 	foreach ($_GET as $key => $value) {
 		$_GET[$key]=htmlentities($value,ENT_QUOTES);
 	}
 
-
+	/******* TRIS HORS DATE ********/
 	if (!empty($_GET['cat']) && $_GET['cat'] != "tous"){
 		array_push($filtre, "s.categorie_salle='".$_GET['cat']."'");
 
@@ -31,43 +30,60 @@ if (isset($_GET['cat']) && isset($_GET['ville']) && isset($_GET['capacite']) && 
 		$capacite=$_GET['capacite'];
 	}
 	if (!empty($_GET['prix'])){
-		array_push($filtre, "p.prix<".$_GET['prix']);
+		array_push($filtre, "p.prix < ".$_GET['prix']);
 		$prix=$_GET['prix'];
 	}
 
-
-	/*
-
-	if (empty($_GET['date_arrivee']) || preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_GET['date_arrivee'])) {
-		if (empty($_GET['date_arrivee'])){
-			$date_arrivee= new DateTime(date('Y-m-d H:i:s'));
+	/******* VERIFICATIONS DATE ********/
+		// Date arrivée
+	if(!empty($_GET['date_arrivee'])) 
+	{	
+		if (new DateTime($_GET['date_arrivee']) < new DateTime(date("d-m-Y H:i")))
+		{
+			$msg_info .= "<p class='error'>La date d'arrivée doit correspondre à une date future</p>";
 		}
-		else{
-			$date_arrivee= $_GET['date_arrivee'];
-			$date_arrivee= strtotime($_GET['date_arrivee']);
-		}
-		array_push($filtre, "p.date_arrivee>".$date_arrivee->date);
-	}
+	}	
 
-
+	if(!empty($_GET['date_depart'])) 
+	{
 		// Date départ
-	if (empty($_GET['date_depart']) || preg_match("#^([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-\d\d\d\d [012]{0,1}[0-9]:[0-6][0-9]$#", $_GET['date_depart'])) {
-		if (empty($_GET['date_depart'])){
-			$date_depart= new DateTime(date('Y-m-d H:i:s').'+ 20 year' );
+		if (new DateTime($_GET['date_depart']) < new DateTime(date("d-m-Y H:i")))
+		{
+			$msg_info .= "<p class='error'>La date de départ doit correspondre à une date future</p>";
 		}
-		else{
-			$date_depart= $_GET['date_depart'];
-		}
-		array_push($filtre, "p.date_depart<".$date_depart->date);
-		$date_depart="";
 	}
-	*/
-	
 
+	if(!empty($_GET['date_depart']) && !empty($_GET['date_arrivee']))
+	{
+		if (new DateTime($_GET['date_depart']) < new DateTime($_GET['date_arrivee']))
+		{
+			$msg_info .= "<p class='error'>La date de départ doit correspondre à une date future à la date d'arrivée</p>";
+		}		
+	} 		
 
+	/******* TRI DATE ********/
+	if(empty($msg_info))
+	{
+		if(!empty($_GET['date_arrivee'])) 
+		{
+			$date_arrivee=$_GET['date_arrivee'];
+			$_GET['date_arrivee'] = date('Y-m-d H:i:s' ,strtotime($_GET['date_arrivee']));
+			array_push($filtre, "p.date_arrivee > '".$_GET['date_arrivee']."'");		
+		}
+		if(!empty($_GET['date_depart']))	
+		{
+			$date_depart=$_GET['date_depart'];
+			$_GET['date_depart'] = date('Y-m-d H:i:s' ,strtotime($_GET['date_depart']));
+			array_push($filtre, "p.date_depart < '".$_GET['date_depart']."'");						
+		}
+	}
 }
-	$filtre="WHERE ".implode($filtre, " AND ");
-	debug($filtre);
+// Creation du filtre de requête
+$filtre="WHERE ".implode($filtre, " AND ");
+//debug($filtre);
+
+/***************** FIN CONSTRUCTION REQUETE TRI PRODUITS *****************/
+
 
 //liste pour le filtre
 $resultat_ville=$pdo->query("SELECT DISTINCT ville_salle FROM salle");
@@ -136,19 +152,20 @@ include("inc/nav.inc.php");
 					</div>
 
 					<p>Disponible entre les dates suivantes :</p>
+					<?= $msg_info ?>
 
 					<div class="form-group">
 						<label for="date-arrive-pdt">Date d'arrivée</label>
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control datepicker" name="date_arrivee" id="date-arrive-pdt" placeholder="MM/JJ/YYYY" value="<?= $date_arrivee->format('m/d/Y') ?>">
+							<input type="text" class="form-control datepicker" name="date_arrivee" id="date-arrive-pdt" placeholder="Date d'arrivée" value="<?= $date_arrivee ?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="date-depart-pdt">Date de départ</label>
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control datepicker" name="date_depart" id="date-depart-pdt" placeholder="not ready" value="">
+							<input type="text" class="form-control datepicker" name="date_depart" id="date-depart-pdt" placeholder="Date de départ" value="<?= $date_depart ?>">
 						</div>
 					</div>
 
@@ -164,7 +181,7 @@ include("inc/nav.inc.php");
 				LEFT JOIN avis a ON a.id_salle=s.id_salle
 				$filtre
 				GROUP BY p.id_produit");
-			$date_depart="";
+
 			//joindre avec la note moyenne !
 				  	echo "<div class='row'>";
 				  	$compteur_ligne=0;
