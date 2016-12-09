@@ -16,7 +16,7 @@ include("inc/nav.inc.php");
 					<div id="note-produit">
 						<?= $note_produit ?>
 					</div>
-					<?= $btn_reservation ?>
+					<?php echo $btn_reservation." (<a href='#liste-commentaires'>".$nb_note." avis</a>)" ?>
 					<div class="clearfix"></div>
 				</div>			
 			</div>
@@ -90,7 +90,7 @@ include("inc/nav.inc.php");
 					<?php } ?>
 				</div>
 				<div class="col-sm-4">
-					<h4><strong>Commentaires</strong></h4>
+					<h4 id="liste-commentaires"><strong>Commentaires</strong></h4>
 					<?= $commentaires ?>
 				</div>
 				<div class="col-sm-4">
