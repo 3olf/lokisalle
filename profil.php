@@ -70,7 +70,7 @@ include('inc/nav.inc.php');
 			}
 
 			//ajout d'une colonne pour les actions modif /suppr
-			echo '<td><a href="'.URL.'fiche_produit.php?salle='. $ligne['id_produit'] .'" class="btn btn-info" ><span class="glyphicon glyphicon-search"></span></a>';
+			echo '<td><a href="'.URL.'fiche_produit.php?salle='. $ligne['id_produit'] .'" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></a>';
 			echo "</td></tr>";
 		}
 

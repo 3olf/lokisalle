@@ -83,8 +83,8 @@ include('../inc/nav.inc.php');
 						}
 
 						//ajout d'une colonne pour les actions modif /suppr
-						echo '<td><a href="?action=modification&id='. $ligne['id_membre'] .'" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil"></span></a>';
-						echo '<a href="?action=suppression&id='. $ligne['id_membre'] .'"  class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
+						echo '<td><a href="?action=modification&id='. $ligne['id_membre'] .'" class="btn btn-default" ><span class="glyphicon glyphicon-pencil"></span></a>';
+						echo '<a href="?action=suppression&id='. $ligne['id_membre'] .'"  class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>';
 						echo "</td></tr>";
 					}
 					echo '</tbody>';

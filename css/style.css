@@ -1,10 +1,35 @@
 /* GLOBAL */
-body {
-  padding-top: 60px;
-  padding-bottom: 50px;
-}
+/* INDEX COLORS : 
+http://colorhunt.co/c/43120 ???
+#AC4C5E => bordeaux clair 
+#eee => BORDER
 
-/* TEMP */
+http://colorhunt.co/c/42664
+#233142 => bleu marine (h1)
+#36506C => bleu moins marine (nav)
+
+*/
+body {padding-top: 60px; padding-bottom: 50px;}
+
+img {max-width:100%; height:auto;}
+
+a, a:hover {text-decoration: none; color:inherit;}
+
+h1, h2, h3, h4, h5, h6, p {margin:0;}
+
+h1, h2 {color:#233142;}
+
+hr {margin-top:10px; margin-bottom: 8px;}
+
+h1 {font-size: 2.2em;}
+h2 {font-size: 1.8em; margin: 18px 0 6px 0;}
+h3 {font-size: 1.15em; font-weight:700;}
+
+section, aside{margin-top:20px;}
+
+h1 + hr {border-color:#233142;}
+
+/* TEMPORAIRE */
 .navbar-nav li {
 	font-size:0.8em;
 }
@@ -43,6 +68,47 @@ body {
 	border-radius: 4px;	
 }
 
+
+/* NAV */
+/* Redéfinition couleurs bootstrap de la nav */
+.navbar-inverse {background-color:#36506C; border:none;}
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {color:white;}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {background-color:#1D3753;}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {background-color:#1D3753;}
+
+
+/* INDEX / PAGE PRODUITS */
+#h1-index {
+	margin-top:20px;
+}
+#section-boutique .vignette-produit {
+	margin-bottom: 20px;
+	border-bottom: 16px solid #AC4C5E;
+}
+
+#section-boutique .vignette-produit:hover {
+	border-bottom: 16px solid #933345;
+}
+
+#section-boutique .vignette-produit:hover h3 {background-color: #36506C; color:white;} 
+
+#section-boutique .description-produit {
+	padding:5px 3px 10px 5px;
+	background-color: #fbfbfb;
+}
+#section-boutique .description-produit p {padding:2px 0;}
+#section-boutique h3 {
+	background-color: #fbfbfb;
+	padding:6px 5px;
+}
+
+/* AVIS PRODUIT (INDEX / NOS PRODUITS / FICHE PRODUIT) */
+.avis-produit:hover .nb-avis{text-decoration: underline;}
+#section-boutique .avis-produit:hover {color:#AC4C5E;}
+#section-fiche-produit .avis-produit {color:#933345;}
+#section-fiche-produit .avis-produit:hover {color:#AC4C5E;}
+
+
 /* PAGE GESTION SALLE */
 #table-liste-salles img, #table-liste-produits img {
 	max-width: 100px;
@@ -58,53 +124,27 @@ body {
 }
 
 /* PAGE FICHE PRODUIT */
-#section-fiche-produit {
-	margin-top:20px;
-}
+#section-fiche-produit h1, #section-fiche-produit #note-produit {display:inline-block;}
 
-#section-fiche-produit a:hover {
-	text-decoration: none;
-	color:inherit;
-}
+#section-fiche-produit h3 {padding:6px 0;}
 
-#section-fiche-produit a {
-	text-decoration: none;
-	color:inherit;	
-}
+#section-fiche-produit #note-produit {padding-left:6px; font-size:1.4em;}
 
-#section-fiche-produit h1 {
-	font-size:2.2em;
-	display:inline-block;
-	margin:0;
-}
+hr.hr-page-produit {border-color:#233142;}
+#infos-supplementaires {margin: 10px 0 8px 0;}
+#infos-supplementaires p {padding:2px 0;}
+#section-fiche-produit .img-produit-complentaire {padding:6px 0;}
+#section-fiche-produit .retour-catalogue a:hover {color:#36506C;}
 
-#section-fiche-produit #note-produit {
-	display: inline-block;
-}
+/* TEST PAGE PRODUIT */
+.produits-complementaires{position:relative;z-index:10;}
+.hover-produits-complementaires{background-color: black;position:absolute;top:6px;left:15px;z-index:50;display:none;}
 
-#section-fiche-produit h2 {
-	font-size:1.8em;
-	margin:16px 0 0 0;
-}
 
-#section-fiche-produit h4 {
-	font-size:1.2em;
-	margin:0;
-}
-
-#section-fiche-produit .h4infos {
-	margin-top:12px;
-}
-
-#section-fiche-produit hr {
-	margin:8px;
-}
-
-#section-fiche-produit img {
-	max-width:100%;
-}
-
-#section-fiche-produit #note-produit {
-	padding-left:6px;
-	font-size:1.4em;
+/* MEDIA QUERY */
+/* INDEX / PAGE PRODUITS */
+@media screen and (max-width:768px) 
+{
+	#section-boutique .description-produit p {padding:3px 0;}
+	#section-boutique .description-produit p:last-child {padding:5px 0;}
 }

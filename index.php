@@ -7,6 +7,7 @@ $date_arrivee= "";
 $date_depart="";
 $prix=3000;   //le plus cher par defaut
 $capacite=0;
+$capacite_affichage = "toutes";
 $filtre=array("p.etat='libre'");
 
 
@@ -28,6 +29,11 @@ if (isset($_GET['cat']) || isset($_GET['ville']) || isset($_GET['capacite']) || 
 	if (!empty($_GET['capacite'])){
 		array_push($filtre, "s.capacite_salle>".$_GET['capacite']);
 		$capacite=$_GET['capacite'];
+		$capacite_affichage=$_GET['capacite'];
+	}
+	else
+	{
+		$capacite_affichage = "toutes";
 	}
 	if (!empty($_GET['prix'])){
 		array_push($filtre, "p.prix < ".$_GET['prix']);
@@ -113,113 +119,109 @@ include("inc/nav.inc.php");
 
 ?>
     <div class="container">
-
-        <h1>Accueil</h1>
-        
+        <h1 id="h1-index">Nos produits</h1>
+        <hr>  
         <div class="row">
         	<div class="col-sm-3"><!--panneau filtre-->
-        		<form method="GET" action="" class="form">
-		  		 	<div class="form-group">
-		  		 		<label for="cat">Tri par catégorie : </label>
-		  				<select name="cat" id="cat" class="form-control">
-		  					<option value="tous">Tous les produits</option>
-		  					<?php
-		  					echo $liste_cat;
-		  					?>
-		  				</select>
+	        	<aside id="filtres-boutique">
+	        		<form method="GET" action="" class="form">
+			  		 	<div class="form-group">
+			  		 		<label for="cat">Catégorie </label>
+			  				<select name="cat" id="cat" class="form-control">
+			  					<option value="tous">Tous les produits</option>
+			  					<?php
+			  					echo $liste_cat;
+			  					?>
+			  				</select>
 
-					</div>
-
-					<div class="form-group">
-			  			<label for="ville"> par ville : </label>
-			  			<select name="ville" id="ville" class="form-control">
-			  				<option value="tous">Toutes les villes</option>
-			  				<?php
-			  				echo $liste_ville;
-			  				?>
-			  			</select>
-					</div>
-
-					<!-- ajouter du javascript pour afficher la valeur des input dessous -->
-		  			<div class="form-group">
-			  			<label for="capacite"> capacite minimum : <span id="capaciteFiltre"><?= $capacite ?></span></label>
-			  			<input id="capacite" type="range" value="<?= $capacite ?>" max="500" min="0" step="20" name="capacite">
-					</div>
-
-					<div class="form-group">
-						<label for="prix"> prix maximum : <span id="prixFiltre"><?= $prix ?></span></label>
-						<input type="range" value="<?= $prix ?>" max="3000" min="0" step="300" name="prix" id="prix">
-					</div>
-
-					<p>Disponible entre les dates suivantes :</p>
-					<?= $msg_info ?>
-
-					<div class="form-group">
-						<label for="date-arrive-pdt">Date d'arrivée</label>
-						<div class="input-group">
-							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control datepicker" name="date_arrivee" id="date-arrive-pdt" placeholder="Date d'arrivée" value="<?= $date_arrivee ?>">
 						</div>
-					</div>
-					<div class="form-group">
-						<label for="date-depart-pdt">Date de départ</label>
-						<div class="input-group">
-							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control datepicker" name="date_depart" id="date-depart-pdt" placeholder="Date de départ" value="<?= $date_depart ?>">
-						</div>
-					</div>
 
-		  			<input type="submit" value="trier" class="btn btn-info">
-		  		</form>
+						<div class="form-group">
+				  			<label for="ville"> Ville </label>
+				  			<select name="ville" id="ville" class="form-control">
+				  				<option value="tous">Toutes les villes</option>
+				  				<?php
+				  				echo $liste_ville;
+				  				?>
+				  			</select>
+						</div>
+
+						<!-- ajouter du javascript pour afficher la valeur des input dessous -->
+			  			<div class="form-group">
+				  			<label for="capacite"> Capacité : <span id="capaciteFiltre"><?= $capacite_affichage ?></span> <span class="small">(maximum)</span></label>
+				  			<input id="capacite" type="range" value="<?= $capacite ?>" max="100" min="0" step="10" name="capacite">
+						</div>
+
+						<div class="form-group">
+							<label for="prix"> Prix : <span id="prixFiltre"><?= $prix ?></span> &euro; <span class="small">(maximum)</span></label>
+							<input type="range" value="<?= $prix ?>" max="3000" min="0" step="300" name="prix" id="prix">
+						</div>
+
+						<?= $msg_info ?>
+
+						<div class="form-group">
+							<label for="date-arrive-pdt">Date d'arrivée</label>
+							<div class="input-group">
+								<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+								<input type="text" class="form-control datepicker" name="date_arrivee" id="date-arrive-pdt" placeholder="Date d'arrivée" value="<?= $date_arrivee ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="date-depart-pdt">Date de départ</label>
+							<div class="input-group">
+								<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+								<input type="text" class="form-control datepicker" name="date_depart" id="date-depart-pdt" placeholder="Date de départ" value="<?= $date_depart ?>">
+							</div>
+						</div>
+
+			  			<input type="submit" value="Valider" class="btn btn-default">
+			  		</form>
+			  	</aside>	
         	</div>
 
         	<div class="col-sm-9"><!--boutique-->
-<?php    		
-			$resultat_produit= $pdo->query("
-				SELECT p.id_produit, s.photo_salle, s.titre_salle, p.prix, s.description_salle, DATE_FORMAT(p.date_arrivee, '%d %b %Y %T') AS date_arrivee, DATE_FORMAT(p.date_depart,'%d %b %Y %T') AS date_depart, ROUND(AVG(a.note)) AS note_moyenne, COUNT(a.note) AS nb_note FROM produit p 
-				JOIN salle s ON p.id_salle=s.id_salle
-				LEFT JOIN avis a ON a.id_salle=s.id_salle
-				$filtre
-				GROUP BY p.id_produit");
+	        	<section id="section-boutique">
+	<?php    		
+				$resultat_produit= $pdo->query("
+					SELECT p.id_produit, s.photo_salle, s.titre_salle, p.prix, s.description_salle, DATE_FORMAT(p.date_arrivee, '%d %b %Y %T') AS date_arrivee, DATE_FORMAT(p.date_depart,'%d %b %Y %T') AS date_depart, ROUND(AVG(a.note)) AS note_moyenne, COUNT(a.note) AS nb_note FROM produit p 
+					JOIN salle s ON p.id_salle=s.id_salle
+					LEFT JOIN avis a ON a.id_salle=s.id_salle
+					$filtre
+					GROUP BY p.id_produit");
 
-			//joindre avec la note moyenne !
-				  	echo "<div class='row'>";
-				  	$compteur_ligne=0;
-				  	if ($resultat_produit->rowCount()>0){
-				  		echo '<div class="row">';
-				  		while($produit=$resultat_produit->fetch(PDO::FETCH_ASSOC)){
-					  		extract($produit);
-					  		//affichage de chaque vignette de salle
+				//joindre avec la note moyenne !
+					  	echo "<div class='row'>";
+					  	if ($resultat_produit->rowCount()>0){
+					  		while($produit=$resultat_produit->fetch(PDO::FETCH_ASSOC)){
+						  		extract($produit);
+						  		//affichage de chaque vignette de salle
 
-					  		echo "<div class='col-sm-4'>";
-					  		echo "<img class='col-xs-12' src='".$photo_salle."' alt='photo salle'>";
-					  		echo '<p> Salle : '.$titre_salle.'</p>';
-					  		echo '<p>Prix : '.$prix.'</p>';
-					  		echo '<p><em>'.substr($description_salle,0,30).'...</em></p>';
-					  		echo '<p><span class="glyphicon glyphicon-calendar"></span>'.$date_arrivee." - ".$date_depart.'</p><p>';
+						  		echo "<div class='col-xs-6 col-sm-6 col-md-4'>";
+						  		echo "<div class='vignette-produit'><a href='fiche_produit.php?action=voir&id=".$id_produit."'><img src='".$photo_salle."' alt='photo salle'>";
+						  		echo "<h3 class='text-center'>".mb_ucfirst($titre_salle)."</h3></a>";
+						  		echo "<div class='description-produit'><a href='fiche_produit.php?action=voir&id=".$id_produit."'><p>Prix : ".$prix." &euro;</p>";
+						  		echo '<p class="hidden-xs"><em>'.substr($description_salle,0,22).'...</em></p>';
+						  		echo "<p><span class='glyphicon glyphicon-calendar'></span> ".$date_arrivee."</p>";
+						  		echo "<p><span class='glyphicon glyphicon-calendar'></span> ".$date_depart."</p></a>";
+						  		echo "<p class='avis-produit'><a href='fiche_produit.php?action=voir&id=".$id_produit."#liste-commentaires'>";
 
-					  		//note moyenne
-					  		for ($i=0; $i < $note_moyenne ; $i++) { 
-								echo '<span class="glyphicon glyphicon-star"></span>';
-							}
-							for ($i=0; $i < (5-$note_moyenne) ; $i++) { 
-								echo '<span class="glyphicon glyphicon-star-empty"></span>';
-							}
+						  		//note moyenne
+						  		for ($i=0; $i < $note_moyenne ; $i++) { 
+									echo '<span class="glyphicon glyphicon-star"></span>';
+								}
+								for ($i=0; $i < (5-$note_moyenne) ; $i++) { 
+									echo '<span class="glyphicon glyphicon-star-empty"></span>';
+								}
 
-							echo ' ('.$nb_note.' avis)</p>';
-							echo '<a class="btn btn-default" href="fiche_produit.php?action=voir&id='.$id_produit.'"><span class="glyphicon glyphicon-search"></span></a>';
+								echo " (<span class='nb-avis'>".$nb_note." avis</span>)</a></p>";
+								echo '</div></div>';
 
-					  		echo "</div>";
-					  		$compteur_ligne++;
-					  		if ($compteur_ligne%3==0){
-					  			echo "</div><div class='row'>";
+						  		echo "</div>";
 					  		}
-
-
-				  		}
-				  		echo '</div>';
-				  	}
-?>
+					  	}
+					echo "</div>";	
+	?>
+				</section>
         	</div>
 
         </div>

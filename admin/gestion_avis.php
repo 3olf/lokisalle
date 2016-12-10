@@ -86,7 +86,7 @@ include('../inc/nav.inc.php');
 						}
 
 						//ajout d'une colonne pour les actions suppr
-						echo '<td><a href="?action=suppression&id='. $ligne['id_avis'] .'"  class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
+						echo '<td><a href="?action=suppression&id='. $ligne['id_avis'] .'"  class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>';
 						echo "</td></tr>";
 					}
 					echo '</tbody>';

@@ -17,9 +17,35 @@
 
 			$('#capacite').on('input change', function(){
 				$thisValue=$(this).val();
-				$spanCapacite.html($thisValue);
+				if($thisValue > 0)
+				{
+					$spanCapacite.html($thisValue);
+				}
+				else
+				{
+					$spanCapacite.html("toutes");
+				}
 			});
 
+			// var hoverPdtsComplement = $(".hover-produits-complementaires");
+			// var imgPdtsComplement = $(".img-produit-complentaire");	
+			// var pdtsComplement = $(".produits-complementaires");
+
+			// var tempH = Math.round(imgPdtsComplement.height());
+			// var tempW = Math.round(imgPdtsComplement.width());
+			// hoverPdtsComplement.height(tempH);
+			// hoverPdtsComplement.width(tempW);						
+					
+			// pdtsComplement.each(function(){
+			// 	var data;
+			// 	data = $(this).attr("data-value");
+			// 	$(this).on("mouseenter", function(){
+			// 		console.log(data+"youpi");
+			// 	});
+			// 	$(this).on("mouseleave", function(){
+			// 		console.log(data+"youpa");
+			// 	});
+			// });
 
 		});
 	</script>

@@ -10,33 +10,29 @@ include("inc/nav.inc.php");
 	<section id="section-fiche-produit">
 		<div class="container">
 		<?php //debug($_SERVER); //debug($_SERVER['PHP_SELF']); ?>
-			<div class="row">
-				<div class="col-sm-12">
-					<h1><?php echo mb_ucfirst($titre_salle) ?></h1>
-					<div id="note-produit">
-						<?= $note_produit ?>
-					</div>
-					<?php echo $btn_reservation." (<a href='#liste-commentaires'>".$nb_note." avis</a>)" ?>
-					<div class="clearfix"></div>
-				</div>			
+			<h1><?php echo mb_ucfirst($titre_salle) ?></h1>
+			<div id="note-produit">
+				<p class='avis-produit'><a href='#liste-commentaires'><?php echo $note_produit." (<span class='nb-avis'>".$nb_note." avis</span>)" ?></a></p>
 			</div>
-			<hr>
+			<?= $btn_reservation ?>
+			<div class="clearfix"></div>
+			<hr class="hr-page-produit">
 			<div class="row">
 				<div class="col-sm-8">
 					<img src="<?= $photo_salle ?>" alt="Salle <?= $titre_salle?>">
 				</div>
 				<div class="col-sm-4">
-					<h4><strong>Description</strong></h4>
+					<h3>Description</h3>
 					<p><?= $description_salle ?></p>
 				</div>
-				<div class="col-sm-12">
-					<h4 class="h4infos"><strong>Informations complémentaires</strong></h4>
-					<div class="col-sm-4"><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?= $date_arrivee ?></div>
-					<div class="col-sm-4"><span class="glyphicon glyphicon-user"></span> Capacité : <?= $capacite_salle ?> places</div>
-					<div class="col-sm-4"><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?php echo $adresse_salle.", ".$cp_salle.", ".$ville_salle ?></div>
-					<div class="col-sm-4"><span class="glyphicon glyphicon-calendar"></span> Départ : <?= $date_depart ?></div>
-					<div class="col-sm-4"><span class="glyphicon glyphicon-inbox"></span> Catégorie : <?= $categorie_salle ?></div>
-					<div class="col-sm-4"><span class="glyphicon glyphicon-euro"></span> Tarif : <?= $prix ?> &euro;</div>
+				<div class="col-sm-12" id="infos-supplementaires">
+					<h3>Informations complémentaires</h3>
+					<div class="col-sm-4"><p><span class="glyphicon glyphicon-calendar"></span> Arrivée : <?= $date_arrivee ?></p></div>
+					<div class="col-sm-4"><p><span class="glyphicon glyphicon-user"></span> Capacité : <?= $capacite_salle ?> places</p></div>
+					<div class="col-sm-4"><p><span class="glyphicon glyphicon-map-marker"></span> Adresse : <?php echo $adresse_salle.", ".$cp_salle.", ".$ville_salle ?></p></div>
+					<div class="col-sm-4"><p><span class="glyphicon glyphicon-calendar"></span> Départ : <?= $date_depart ?></p></div>
+					<div class="col-sm-4"><p><span class="glyphicon glyphicon-inbox"></span> Catégorie : <?= $categorie_salle ?></p></div>
+					<div class="col-sm-4"><p><span class="glyphicon glyphicon-euro"></span> Tarif : <?= $prix ?> &euro;</p></div>
 				</div>
 			</div>
 			<div class="row">
@@ -46,18 +42,26 @@ include("inc/nav.inc.php");
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-sm-3">
-					<a href="?action=voir&id=<?= $retour[$pdt_tires[0]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[0]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[0]]["titre_salle"] ?>"></a>
+				<div class="col-sm-3 col-xs-6">
+					<div class="produits-complementaires" data-value="0"><a href="?action=voir&id=<?= $retour[$pdt_tires[0]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[0]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[0]]["titre_salle"] ?>"></a></div>
+					<div class="hover-produits-complementaires" data-value="0"></div>
 				</div>
-				<div class="col-sm-3">
-					<a href="?action=voir&id=<?= $retour[$pdt_tires[1]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[1]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[1]]["titre_salle"] ?>"></a>
+				
+				<div class="col-sm-3 col-xs-6">
+					<div class="produits-complementaires" data-value="1"><a href="?action=voir&id=<?= $retour[$pdt_tires[1]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[1]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[1]]["titre_salle"] ?>"></a></div>
+					<div class="hover-produits-complementaires" data-value="1"></div>
 				</div>
-				<div class="col-sm-3">
-					<a href="?action=voir&id=<?= $retour[$pdt_tires[2]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[2]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[2]]["titre_salle"] ?>"></a>
+				
+				<div class="col-sm-3 hidden-xs">
+					<div class="produits-complementaires" data-value="2"><a href="?action=voir&id=<?= $retour[$pdt_tires[2]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[2]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[2]]["titre_salle"] ?>"></a></div>
+					<div class="hover-produits-complementaires" data-value="2"></div>
 				</div>
-				<div class="col-sm-3">
-					<a href="?action=voir&id=<?= $retour[$pdt_tires[3]]["id_produit"] ?>"><img src="<?= $retour[$pdt_tires[3]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[3]]["titre_salle"] ?>"></a>
+				
+				<div class="col-sm-3 hidden-xs">
+					<div class="produits-complementaires" data-value="3"><a href="?action=voir&id=<?= $retour[$pdt_tires[3]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[3]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[3]]["titre_salle"] ?>"></a></div>
+					<div class="hover-produits-complementaires" data-value="3"></div>
 				</div>
+				
 			</div>
 			<hr>
 			<div class="row">
@@ -65,7 +69,7 @@ include("inc/nav.inc.php");
 					<?php if(userConnected()) { 
 					echo $msg_info;
 					?>
-					<h4><strong>Laisser un message</strong></h4>
+					<h3>Laisser un message</h3>
 					<form method="post" action="">
 						<div class="form-group">
 							<label for="commentaire_salle">Commentaire</label>
@@ -90,11 +94,11 @@ include("inc/nav.inc.php");
 					<?php } ?>
 				</div>
 				<div class="col-sm-4">
-					<h4 id="liste-commentaires"><strong>Commentaires</strong></h4>
+					<h3 id="liste-commentaires">Commentaires</h3>
 					<?= $commentaires ?>
 				</div>
 				<div class="col-sm-4">
-					<p class="pull-right"><a href="index.php">Retour vers le catalogue</a></p>
+					<p class="pull-right retour-catalogue" ><span class="glyphicon glyphicon-share-alt"></span><a href="index.php"> Retour vers le catalogue</a></p>
 				</div>
 			</div>			
 		</div>

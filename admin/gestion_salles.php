@@ -20,7 +20,7 @@ include("../inc/nav.inc.php");
 			<!-- debug et messages d'erreur -->
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
-					<?php //debug($count_col) ?>
+					<?php //debug(getimagesize($_FILES['photo_salle']['tmp_name'])) ?>
 					<?php echo $msg_info ?>
 				</div>
 			</div>
