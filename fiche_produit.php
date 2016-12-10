@@ -9,7 +9,7 @@ include("inc/nav.inc.php");
 ?>
 	<section id="section-fiche-produit">
 		<div class="container">
-		<?php //debug($_SERVER); //debug($_SERVER['PHP_SELF']); ?>
+		<?php //debug($retour); //debug($_SERVER['PHP_SELF']); ?>
 			<h1><?php echo mb_ucfirst($titre_salle) ?></h1>
 			<div id="note-produit">
 				<p class='avis-produit'><a href='#liste-commentaires'><?php echo $note_produit." (<span class='nb-avis'>".$nb_note." avis</span>)" ?></a></p>
@@ -43,23 +43,47 @@ include("inc/nav.inc.php");
 			<hr>
 			<div class="row">
 				<div class="col-sm-3 col-xs-6">
-					<div class="produits-complementaires" data-value="0"><a href="?action=voir&id=<?= $retour[$pdt_tires[0]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[0]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[0]]["titre_salle"] ?>"></a></div>
-					<div class="hover-produits-complementaires" data-value="0"></div>
+					<div class="produits-complementaires">
+						<img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[0]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[0]]["titre_salle"] ?>">
+						<a href="?action=voir&id=<?= $retour[$pdt_tires[0]]["id_produit"] ?>">
+							<div class="hover-produits-complementaires hideHover">
+								<h4 class="text-center"><?= $retour[$pdt_tires[0]]["titre_salle"] ?></h4>
+							</div>
+						</a>
+					</div>
 				</div>
 				
 				<div class="col-sm-3 col-xs-6">
-					<div class="produits-complementaires" data-value="1"><a href="?action=voir&id=<?= $retour[$pdt_tires[1]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[1]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[1]]["titre_salle"] ?>"></a></div>
-					<div class="hover-produits-complementaires" data-value="1"></div>
+					<div class="produits-complementaires">
+						<img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[1]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[1]]["titre_salle"] ?>">
+						<a href="?action=voir&id=<?= $retour[$pdt_tires[1]]["id_produit"] ?>">
+							<div class="hover-produits-complementaires hideHover">
+								<h4 class="text-center"><?= $retour[$pdt_tires[1]]["titre_salle"] ?></h4>
+							</div>
+						</a>
+					</div>
 				</div>
 				
 				<div class="col-sm-3 hidden-xs">
-					<div class="produits-complementaires" data-value="2"><a href="?action=voir&id=<?= $retour[$pdt_tires[2]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[2]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[2]]["titre_salle"] ?>"></a></div>
-					<div class="hover-produits-complementaires" data-value="2"></div>
+					<div class="produits-complementaires">
+						<img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[2]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[2]]["titre_salle"] ?>">
+						<a href="?action=voir&id=<?= $retour[$pdt_tires[2]]["id_produit"] ?>">
+							<div class="hover-produits-complementaires hideHover">
+								<h4 class="text-center"><?= $retour[$pdt_tires[2]]["titre_salle"] ?></h4>
+							</div>
+						</a>
+					</div>
 				</div>
 				
 				<div class="col-sm-3 hidden-xs">
-					<div class="produits-complementaires" data-value="3"><a href="?action=voir&id=<?= $retour[$pdt_tires[3]]["id_produit"] ?>"><img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[3]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[3]]["titre_salle"] ?>"></a></div>
-					<div class="hover-produits-complementaires" data-value="3"></div>
+					<div class="produits-complementaires">
+						<img class="img-produit-complentaire" src="<?= $retour[$pdt_tires[3]]["photo_salle"] ?>" alt="<?= $retour[$pdt_tires[3]]["titre_salle"] ?>">
+						<a href="?action=voir&id=<?= $retour[$pdt_tires[3]]["id_produit"] ?>">
+							<div class="hover-produits-complementaires hideHover">
+								<h4 class="text-center"><?= $retour[$pdt_tires[3]]["titre_salle"] ?></h4>
+							</div>
+						</a>
+					</div>
 				</div>
 				
 			</div>

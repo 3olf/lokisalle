@@ -24,6 +24,7 @@ hr {margin-top:10px; margin-bottom: 8px;}
 h1 {font-size: 2.2em;}
 h2 {font-size: 1.8em; margin: 18px 0 6px 0;}
 h3 {font-size: 1.15em; font-weight:700;}
+h3 {font-size: 1.10em; font-weight:700;}
 
 section, aside{margin-top:20px;}
 
@@ -133,13 +134,12 @@ h1 + hr {border-color:#233142;}
 hr.hr-page-produit {border-color:#233142;}
 #infos-supplementaires {margin: 10px 0 8px 0;}
 #infos-supplementaires p {padding:2px 0;}
-#section-fiche-produit .img-produit-complentaire {padding:6px 0;}
+#section-fiche-produit .produits-complementaires {padding:6px 0;position:relative;z-index:10;}
 #section-fiche-produit .retour-catalogue a:hover {color:#36506C;}
 
-/* TEST PAGE PRODUIT */
-.produits-complementaires{position:relative;z-index:10;}
-.hover-produits-complementaires{background-color: black;position:absolute;top:6px;left:15px;z-index:50;display:none;}
-
+#section-fiche-produit .hover-produits-complementaires{background-color: rgba(0, 0, 0, 0.5);position:absolute;top:6px;z-index:50;}
+#section-fiche-produit .hideHover{display:none;}
+#section-fiche-produit .hover-produits-complementaires h4 {color:white;}
 
 /* MEDIA QUERY */
 /* INDEX / PAGE PRODUITS */
