@@ -251,7 +251,7 @@ foreach ($liste_produit as $produit) {
 			$td_produit .= "<td>".$value."</td>";	
 		}		
 	}
-	$td_produit .= "<td><a href='".URL."fiche_produit.php?action=voir&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$produit['Produit']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
+	$td_produit .= "<td><a href='".URL."fiche_produit.php?action=voir&id=".$produit['Produit']."' class='btn btn-default btn-primary'><span class='glyphicon glyphicon-search'></span></a><a href='?action=modifier&id=".$produit['Produit']."' class='btn btn-default btn-warning'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$produit['Produit']."' class='btn btn-default btn-danger'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
 	$tr_produit .= "<tr>".$td_produit."</tr>";
 }
 

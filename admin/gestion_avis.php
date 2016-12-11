@@ -28,7 +28,7 @@ if (isset($_GET['action']) && $_GET['action']=="suppression" && isset($_GET['id'
 include('../inc/header.inc.php');
 include('../inc/nav.inc.php');
 ?>
-<section id="section-gestion-avis">
+<section id="section-gestion-avis" class="section-back-office">
 	<div class="container">
 
 		<h1>Gestion des avis</h1>
@@ -86,7 +86,7 @@ include('../inc/nav.inc.php');
 						}
 
 						//ajout d'une colonne pour les actions suppr
-						echo '<td><a href="?action=suppression&id='. $ligne['id_avis'] .'"  class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>';
+						echo '<td><a href="?action=suppression&id='. $ligne['id_avis'] .'"  class="btn btn-default btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
 						echo "</td></tr>";
 					}
 					echo '</tbody>';

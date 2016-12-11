@@ -13,7 +13,7 @@ $titre_salle = "";
 $photo_salle ="";
 $description_salle="";
 $name_submit = "enregistrer_commentaire";
-$submit_value = "Envoyer";
+$submit_value = "Commenter";
 $url_connexion_commentaire ="";
 $commentaires = "";
 
@@ -86,16 +86,16 @@ if(isset($_GET['action']) && $_GET['action'] == 'voir' && isset($_GET['id']))
 		{
 			if(userConnected())
 			{
-				$btn_reservation = '<a class="btn btn-default btn-success pull-right" href="?action=reserver&id='.$resultat['id_produit'].'">Réserver</a>';
+				$btn_reservation = '<a class="btn btn-default btn-ok pull-right" href="?action=reserver&id='.$resultat['id_produit'].'">Réserver <span class="glyphicon glyphicon-ok"></span></a>';
 			}
 			else
 			{
-				$btn_reservation = '<a class="btn btn-default btn-success pull-right" href="'.$url_page_encours.'">Réserver</a>';
+				$btn_reservation = '<a class="btn btn-default btn-ok pull-right" href="'.$url_page_encours.'">Réserver <span class="glyphicon glyphicon-ok"></span></a>';
 			}
 		}
 		else
 		{
-			$btn_reservation = '<div class="btn btn-default btn-danger pull-right">Réservé</div>';
+			$btn_reservation = '<div class="btn btn-default btn-ok pull-right" disabled="disabled">Réservé</div>';
 		}
 
 		// NOTE PRODUIT

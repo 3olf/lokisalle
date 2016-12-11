@@ -174,7 +174,7 @@ include("inc/nav.inc.php");
 							</div>
 						</div>
 
-			  			<input type="submit" value="Valider" class="btn btn-default">
+			  			<input type="submit" value="Valider" class="btn btn-default btn-ok">
 			  		</form>
 			  	</aside>	
         	</div>

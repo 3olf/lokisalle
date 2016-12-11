@@ -96,7 +96,7 @@ include("inc/nav.inc.php");
 					<h3>Laisser un message</h3>
 					<form method="post" action="">
 						<div class="form-group">
-							<label for="commentaire_salle">Commentaire</label>
+							<label for="commentaire_salle">Commentaire <span class="glyphicon glyphicon-comment"></span></label>
 							<textarea name="commentaire" id="commentaire_salle" class="form-control" rows="4" placeholder="Laisser un commentaire"></textarea>
 						</div>
 						<div class="form-group">

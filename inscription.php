@@ -1,7 +1,11 @@
 <?php
 require_once("inc/init.inc.php");
 
-
+//si l'utilisateur est connecte, on le redirige
+if (userConnected()){
+	header('location:index.php');
+	exit();
+}
 
 //test sur données inscription
 
@@ -95,16 +99,6 @@ if (isset($_POST['nom']) && isset($_POST['prenom'])  && isset($_POST['mdp'])  &&
 			$msg_info.="<p class='error'>Un problème est survenu lors de l'enregistrement de vote inscription, merci de contacter</p>";
 		}
 	}
-
-	//si l'utilisateur est connecte, on le redirige
-	/*if (userConnected()){
-		header('location:index.php');
-		exit();
-	}*/
-
-
-
-
 }
 
 
@@ -113,55 +107,52 @@ include("inc/header.inc.php");
 include("inc/nav.inc.php");
 
 ?>
-<div class="container">
-
-	<h1>Inscription</h1>
-
-	<?php echo $msg_info; ?>
-
-	<form class="form" method="POST" action="?action=inscription">
-	  <div class="form-group">
-	    <label for="email">Email address</label>
-	    <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $nom; ?>">
-	  </div>
-	  <div class="form-group">
-	    <label for="mdp">Password</label>
-	    <input type="password" class="form-control" id="mdp" placeholder="Password" name="mdp">
-	  </div>
-	  <div class="form-group">
-	    <label for="mdp2">Confirmation Password</label>
-	    <input type="password" class="form-control" id="mdp2" placeholder="Password" name="mdp2">
-	  </div>
-	  <div class="form-group">
-	    <label for="pseudo">Pseudo</label>
-	    <input type="text" class="form-control" id="pseudo" placeholder="pseudo" name="pseudo" <?php echo $nom; ?>>
-	  </div>
-	  <div class="form-group">
-	    <label for="nom">Nom</label>
-	    <input type="text" class="form-control" id="nom" placeholder="nom" name="nom" <?php echo $nom; ?>>
-	  </div>
-	  <div class="form-group">
-	    <label for="prenom">Prénom</label>
-	    <input type="text" class="form-control" id="prenom" placeholder="prenom" name="prenom" <?php echo $nom; ?>>
-	  </div>
-
-		<div class="radio">
-	  	<label>
-				<input type="radio" name="civilite" id="f" value="f" <?php if ($civilite!="m"){echo "checked";} ?>>
-			Madame
-	 	 </label>
-		</div>
-		<div class="radio">
-	  	<label>
-	   	 <input type="radio" name="civilite" id="m" value="m" <?php if ($civilite=="m"){echo "checked";} ?>>
-	  	  Monsieur
-	 	 </label>
-		</div>
-
-	  <button type="submit" class="btn btn-primary">Inscription</button>
-	</form>
-
-
-
-</div>
-<?php include("inc/footer.inc.php"); ?>
+<section id="section-inscription">
+	<div class="container">
+		<h1>Inscription</h1>
+		<hr>
+		<?php echo $msg_info; ?>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+				<form class="form" method="POST" action="?action=inscription">
+					<div class="form-group">
+						<label for="email">Email address</label>
+						<input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $nom; ?>">
+					</div>
+					<div class="form-group">
+						<label for="mdp">Password</label>
+						<input type="password" class="form-control" id="mdp" placeholder="Password" name="mdp">
+					</div>
+					<div class="form-group">
+						<label for="mdp2">Confirmation Password</label>
+						<input type="password" class="form-control" id="mdp2" placeholder="Password" name="mdp2">
+					</div>
+					<div class="form-group">
+						<label for="pseudo">Pseudo</label>
+						<input type="text" class="form-control" id="pseudo" placeholder="pseudo" name="pseudo" <?php echo $nom; ?>>
+					</div>
+					<div class="form-group">
+						<label for="nom">Nom</label>
+						<input type="text" class="form-control" id="nom" placeholder="nom" name="nom" <?php echo $nom; ?>>
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prénom</label>
+						<input type="text" class="form-control" id="prenom" placeholder="prenom" name="prenom" <?php echo $nom; ?>>
+					</div>
+					<div class="radio">
+						<label class="radio-inline">
+							<input type="radio" name="civilite" id="m" value="m" <?php if ($civilite=="m"){echo "checked";} ?>> Monsieur
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="civilite" id="f" value="f" <?php if ($civilite!="m"){echo "checked";} ?>> Madame
+						</label>
+					</div>
+					<hr>
+					<input type="submit" class="btn btn-default btn-ok form-control" value="S'inscrire" name="inscription">
+				</form>
+			</div>
+		</div>		
+	</div>
+</section>
+<?php 
+include("inc/footer.inc.php"); 

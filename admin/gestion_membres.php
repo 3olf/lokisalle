@@ -43,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action']=="suppression" && isset($_GET['id'
 include('../inc/header.inc.php');
 include('../inc/nav.inc.php');
 ?>
-<section id="section-gestion-membres">
+<section id="section-gestion-membres" class="section-back-office">
 	<div class="container">
 
 		<h1>Gestion des membres</h1>

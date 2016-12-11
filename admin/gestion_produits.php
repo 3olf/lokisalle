@@ -14,7 +14,7 @@ include("../inc/header.inc.php");
 include("../inc/nav.inc.php");
 ?>
 
-<section id="section-gestion-produits">
+<section id="section-gestion-produits" class="section-back-office">
 	<div class="container">
 		<h1>Gestion des produits</h1>
 		<hr>
@@ -75,8 +75,9 @@ include("../inc/nav.inc.php");
 							<input type="text" class="form-control" name="prix" id="prix-pdt" placeholder="100,00" value="<?= $prix ?>">
 						</div>
 					</div>
+					<hr>
 					<div class="form-group">
-						<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default pull-right">
+						<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default btn-ok">
 					</div>										
 				</div>
 			</form>

@@ -316,7 +316,7 @@ foreach ($liste_salles as $salle) {
 			$td_salle .= "<td>".$value."</td>";	
 		}		
 	}
-	$td_salle .= "<td><a href='?action=modifier&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
+	$td_salle .= "<td><a href='?action=modifier&id=".$salle['id_salle']."' class='btn btn-default btn-warning'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$salle['id_salle']."' class='btn btn-default btn-danger'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
 	$tr_salle .= "<tr>".$td_salle."</tr>";
 }
 

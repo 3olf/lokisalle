@@ -29,7 +29,7 @@ if (isset($_GET['action']) && $_GET['action']=="suppression" && isset($_GET['id'
 include('../inc/header.inc.php');
 include('../inc/nav.inc.php');
 ?>
-<section id="section-gestion-commandes">
+<section id="section-gestion-commandes" class="section-back-office">
 	<div class="container">
 
 		<h1>Gestion des commandes</h1>
@@ -80,9 +80,9 @@ include('../inc/nav.inc.php');
 						}
 
 						//ajout d'une colonne pour les actions modif /suppr
-						echo '<td><a href="'.URL.'fiche_produit.php?id='. $ligne['id_produit'] .'" class="btn btn-default" ><span class="glyphicon glyphicon-search"></span></a>';
-						echo '<a href="?action=modification&id='. $ligne['id_commande'] .'" class="btn btn-default" ><span class="glyphicon glyphicon-pencil"></span></a>';
-						echo '<a href="?action=suppression&id='. $ligne['id_commande'] .'"  class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>';
+						echo '<td><a href="'.URL.'fiche_produit.php?id='. $ligne['id_produit'] .'" class="btn btn-default btn-primary" ><span class="glyphicon glyphicon-search"></span></a>';
+						echo '<a href="?action=modification&id='. $ligne['id_commande'] .'" class="btn btn-default btn-warning" ><span class="glyphicon glyphicon-pencil"></span></a>';
+						echo '<a href="?action=suppression&id='. $ligne['id_commande'] .'"  class="btn btn-default btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
 						echo "</td></tr>";
 					}
 
