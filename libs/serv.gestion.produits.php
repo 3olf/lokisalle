@@ -1,12 +1,5 @@
 <?php
 
-// On redirige l'utilisateur s'il passer par l'url directe de la page
-if (PAGE_AUTORISEE != "true")
-{
-	header('location:../index.php');
-	exit();
-}
-
 /******** AFFICHAGE FORM DEFAULT ********/
 $options_salles = ""; $id_salle=""; $prix=""; $date_arrivee=""; $date_depart="";
 // Submit

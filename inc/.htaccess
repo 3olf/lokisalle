@@ -1,0 +1,4 @@
+AuthName "Page d'administration protegee"
+AuthType Basic
+AuthUserFile "C:/xampp/htdocs/lokisalle/inc/.htpasswd"
+Require valid-user

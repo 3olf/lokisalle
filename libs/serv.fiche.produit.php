@@ -1,12 +1,5 @@
 <?php
 
-// On redirige l'utilisateur s'il passer par l'url directe de la page
-if (PAGE_AUTORISEE != "true")
-{
-	header('location:../index.php');
-	exit();
-}
-
 /* DEFAULT VALUES */
 $btn_reservation = '<a href="#" class="btn btn-default btn-success pull-right>Réserver</a>';
 $titre_salle = "";
