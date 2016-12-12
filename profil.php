@@ -26,7 +26,7 @@ include('inc/nav.inc.php');
 	<p>Nom : <?php echo $nom; ?></p>
 	<p>Prénom : <?php echo $prenom; ?></p>
 	<p>email : <?php echo $email; ?></p>
-	<?php if (!userConnectedAdmin()){
+	<?php if (userConnectedAdmin()){
 	echo'<p>Vous avez des <strong>doits administrateur</strong> sur ce site</p>';
 	} ?>
 
