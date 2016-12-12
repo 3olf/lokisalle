@@ -36,9 +36,6 @@ h1 + hr {border-color:#233142;}
 .btn, .btn-default, .btn-ok, .form-control, .input-group-addon {border-radius: 0px;}
 
 
-/* TEMPORAIRE */
-.navbar-nav li {font-size:0.8em;}
-
 /* DEBUG & MSG INFO */
 
 .debug {background-color: DodgerBlue; padding: 10px;}
@@ -51,7 +48,7 @@ h1 + hr {border-color:#233142;}
 .navbar-inverse {background-color:#36506C; border:none;}
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {color:white;}
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {background-color:#1D3753;}
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {background-color:#1D3753;}
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {background-color:#1D3753;}
 
 /* FOOTER */
 footer {height:26px;background-color: #233142; margin-top:30px;}
@@ -88,6 +85,10 @@ hr.hr-page-produit {border-color:#233142;}
 
 /* PAGE CONNEXION & INSCRIPTION */
 #section-connexion form, #section-inscription form {margin:20px 0px;}
+
+/* PAGE PROFIL */
+#section-profil h2 {margin-bottom: 12px;}
+#section-profil p {margin-bottom: 3px;}
 
 
 /********************** CROSS TEMPLATES **********************/

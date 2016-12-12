@@ -184,11 +184,11 @@ if(isset($_GET['action']) && $_GET['action'] == 'voir' && isset($_GET['id']))
 }
 elseif (isset($_GET['action']) && $_GET['action'] == 'reserver' && isset($_GET['id']))
 {
+	$_GET['id'] = htmlentities($_GET['id'], ENT_QUOTES);
+	$mon_id = (int)$_GET['id'];
 	if(userConnected())
 	{
 		// Requête pour récupérer vérifier la disponibilité de la salle avant réservation
-		$_GET['id'] = htmlentities($_GET['id'], ENT_QUOTES);
-		$mon_id = (int)$_GET['id'];
 		$req = $pdo->prepare("SELECT etat, id_produit FROM produit WHERE id_produit = '$mon_id'");
 		$req->execute();
 
@@ -207,7 +207,7 @@ elseif (isset($_GET['action']) && $_GET['action'] == 'reserver' && isset($_GET['
 			$register_commande->execute();
 
 			// Header location à remplacer par un renvoi vers la page profil
-			header("location:".URL."fiche_produit.php?action=voir&id=$mon_id");
+			header("location:".URL."profil.php");
 			exit();
 		}
 	}	
