@@ -56,7 +56,11 @@ foreach ($liste_commandes_user as $commande)
 		{
 			if($key == 'Date de réservation' || $key == 'arrivée' || $key == 'départ')
 			{
-				$td_commandes_user .= "<td> Le ".substr(date('d F Y H:i', strtotime($value)), 0, 16)." à ".substr(date('m-d-Y H:i', strtotime($value)), 11)."</td>";
+				$td_commandes_user .= "<td> Le ".substr(date('d F Y H:i', strtotime($value)), 0, 16)."<br> à ".substr(date('m-d-Y H:i', strtotime($value)), 11)."</td>";
+			}
+			elseif($key == "prix")
+			{
+				$td_commandes_user .= "<td>".$value." &euro; </td>";
 			}
 			else
 			{
