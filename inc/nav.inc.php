@@ -3,7 +3,7 @@
 $menu_swap="";
 $menu_swap_right="";
 
-debug($_SESSION['utilisateur']); 
+//debug($_SESSION['utilisateur']); 
 if (userConnectedAdmin()) {
   $menu_swap_drop = "<li ".active(URL.'admin/gestion_membres.php')."><a href='".URL."admin/gestion_membres.php'>Gestion membres</a></li>
                 <li ".active(URL.'admin/gestion_avis.php')." ><a href='".URL."admin/gestion_avis.php'>Gestion avis</a></li>
@@ -28,7 +28,7 @@ else
                 <li ".active(URL.'connexion.php')." ><a href='".URL."connexion.php'>Connexion</a></li>
                 <li ".active(URL.'inscription.php')." ><a href='".URL."inscription.php'>Inscription</a></li>";
 }
-debug($menu_swap_right); 
+//debug($menu_swap_right); 
 ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
