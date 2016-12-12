@@ -1,19 +1,12 @@
 <?php
 
-// On redirige l'utilisateur s'il passer par l'url directe de la page
-if (PAGE_AUTORISEE != "true")
-{
-	header('location:../index.php');
-	exit();
-}
-
 /* DEFAULT VALUES */
 $btn_reservation = '<a href="#" class="btn btn-default btn-success pull-right>Réserver</a>';
 $titre_salle = "";
 $photo_salle ="";
 $description_salle="";
 $name_submit = "enregistrer_commentaire";
-$submit_value = "Envoyer";
+$submit_value = "Commenter";
 $url_connexion_commentaire ="";
 $commentaires = "";
 
@@ -32,7 +25,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'voir' && isset($_GET['id']))
 	/************* OPERATIONS AFFICHAGE ELEMENTS + AJOUT COMMENTAIRE *************/
 	if($verification >= 1)
 	{
-		$req = $pdo->prepare("SELECT s.titre_salle, s.description_salle, s.photo_salle, s.id_salle, s.categorie_salle, s.capacite_salle, s.adresse_salle, s.cp_salle, s.ville_salle, p.id_produit, p.id_salle, p.date_arrivee, p.date_depart, p.prix, p.etat, AVG(a.note) as note FROM produit AS p JOIN salle AS s ON p.id_salle=s.id_salle LEFT JOIN avis AS a ON s.id_salle = a.id_salle WHERE p.id_produit = '$mon_id'");
+		$req = $pdo->prepare("SELECT s.titre_salle, s.description_salle, s.photo_salle, s.id_salle, s.categorie_salle, s.capacite_salle, s.adresse_salle, s.cp_salle, s.ville_salle, p.id_produit, p.id_salle, p.date_arrivee, p.date_depart, p.prix, p.etat, AVG(a.note) as note, COUNT(a.note) as nb_note FROM produit AS p JOIN salle AS s ON p.id_salle=s.id_salle LEFT JOIN avis AS a ON s.id_salle = a.id_salle WHERE p.id_produit = '$mon_id'");
 
 		$req->execute();	
 			
@@ -86,16 +79,16 @@ if(isset($_GET['action']) && $_GET['action'] == 'voir' && isset($_GET['id']))
 		{
 			if(userConnected())
 			{
-				$btn_reservation = '<a class="btn btn-default btn-success pull-right" href="?action=reserver&id='.$resultat['id_produit'].'">Réserver</a>';
+				$btn_reservation = '<a class="btn btn-default btn-ok pull-right" href="?action=reserver&id='.$resultat['id_produit'].'">Réserver <span class="glyphicon glyphicon-ok"></span></a>';
 			}
 			else
 			{
-				$btn_reservation = '<a class="btn btn-default btn-success pull-right" href="'.$url_page_encours.'">Réserver</a>';
+				$btn_reservation = '<a class="btn btn-default btn-ok pull-right" href="'.$url_page_encours.'">Réserver <span class="glyphicon glyphicon-ok"></span></a>';
 			}
 		}
 		else
 		{
-			$btn_reservation = '<div class="btn btn-default btn-danger pull-right">Réservé</div>';
+			$btn_reservation = '<div class="btn btn-default btn-ok pull-right" disabled="disabled">Réservé</div>';
 		}
 
 		// NOTE PRODUIT

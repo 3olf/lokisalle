@@ -14,7 +14,7 @@ include("../inc/header.inc.php");
 include("../inc/nav.inc.php");
 ?>
 
-<section id="section-gestion-produits">
+<section id="section-gestion-produits" class="section-back-office">
 	<div class="container">
 		<h1>Gestion des produits</h1>
 		<hr>
@@ -46,14 +46,14 @@ include("../inc/nav.inc.php");
 						<label for="date-arrive-pdt">Date d'arrivée</label>
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control" name="date_arrivee" id="date-arrive-pdt" placeholder="JJ-MM-AAAA HH:MM" value="<?= $date_arrivee ?>">
+							<input type="text" class="form-control datepicker" name="date_arrivee" id="date-arrive-pdt" placeholder="JJ-MM-AAAA HH:MM" value="<?= $date_arrivee ?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="date-depart-pdt">Date de départ</label>
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
-							<input type="text" class="form-control" name="date_depart" id="date-depart-pdt" placeholder="JJ-MM-AAAA HH:MM" value="<?= $date_depart ?>">
+							<input type="text" class="form-control datepicker" name="date_depart" id="date-depart-pdt" placeholder="JJ-MM-AAAA HH:MM" value="<?= $date_depart ?>">
 						</div>
 					</div>
 					<?php if (isset($mon_produit)) {
@@ -75,8 +75,9 @@ include("../inc/nav.inc.php");
 							<input type="text" class="form-control" name="prix" id="prix-pdt" placeholder="100,00" value="<?= $prix ?>">
 						</div>
 					</div>
+					<hr>
 					<div class="form-group">
-						<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default pull-right">
+						<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default btn-ok">
 					</div>										
 				</div>
 			</form>

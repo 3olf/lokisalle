@@ -13,14 +13,14 @@ include("../libs/serv.gestion.salles.php");
 include("../inc/header.inc.php");
 include("../inc/nav.inc.php");
 ?>
-	<section id="section-gestion-salles">
+	<section id="section-gestion-salles" class="section-back-office">
 		<div class="container">
 			<h1>Gestion des salles</h1>
 			<hr>	
 			<!-- debug et messages d'erreur -->
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
-					<?php //debug($count_col) ?>
+					<?php //debug(getimagesize($_FILES['photo_salle']['tmp_name'])) ?>
 					<?php echo $msg_info ?>
 				</div>
 			</div>
@@ -101,8 +101,9 @@ include("../inc/nav.inc.php");
 							<label for="cp-salle">Code postal</label>
 							<input type="text" class="form-control" name="cp_salle" id="cp-salle" placeholder="Code postal" value="<?= $cp_salle ?>">
 						</div>
+						<hr>
 						<div class="form-group">
-							<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default">
+							<input type="submit" name="<?= $name_submit ?>" value="<?= $submit_value ?>" class="btn btn-default btn-ok">
 						</div>
 					</div>
 				</form>

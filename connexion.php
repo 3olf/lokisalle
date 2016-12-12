@@ -49,41 +49,34 @@ if (isset($_POST['pseudo']) && isset($_POST['mdp'])){
 include("inc/header.inc.php");
 include("inc/nav.inc.php");
 ?>
+<section id="section-connexion">
+	<div class="container">
+	  <h1>Connexion</h1>
+	  <hr>
+	    <?php echo $msg_info; 
+	    //debug($_POST);
+	    ?>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+				<form method='post' action="">
+					<div class="form-group">
+						<label for="pseudo">Pseudo</label>
+						<input type="text" class="form-control" id="pseudo" placeholder="Pseudo..." name="pseudo">
+					</div>
+					<div class="form-group">
+						<label for="mdp">Mot de passe</label>
+						<input type="password" class="form-control" id="mdp" placeholder="mot de passe" name="mdp">
+					</div>
+					<hr>
+					<input type="submit" class="form-control btn btn-ok" id="connexion" name="connexion" value="Se connecter">
+				</form>
 
-<div class="container">
-
-
-  <h1>Connexion</h1>
-    <?php echo $msg_info; 
-    //debug($_POST);?>
-  </div>
-
-	<div class="row">
-		<div class="col-sm-4 col-sm-offset-4">
-			<form method='post' action="">
-
-				<div class="form-group">
-	    			<label for="pseudo">Pseudo</label>
-	    			<input type="text" class="form-control" id="pseudo" placeholder="Pseudo..." name="pseudo">
-	    		</div>
-
-	    		<div class="form-group">
-	    			<label for="mdp">Mot de passe</label>
-	    			<input type="password" class="form-control" id="mdp" placeholder="mot de passe" name="mdp">
-	    		</div>
-
-		    	<hr>
-
-		    	<input type="submit" class="form-control btn btn-info" id="connexion" name="connexion" value="Connexion">
-
-			</form>
-
-			<p>Vous n'avez pas de compte, <a href="inscription.php">inscrivez-vous dès maintenant ici</a>.</p>
+				<p>Vous n'avez pas de compte ?</p>
+				<p><a href="inscription.php">Inscrivez-vous dès maintenant !</a></p>
+			</div>	
 		</div>
-		
 	</div>
-</div>
-
+</section>
 <?php
 include("inc/footer.inc.php");
 ?>

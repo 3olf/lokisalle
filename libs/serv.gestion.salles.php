@@ -1,12 +1,5 @@
 <?php
 
-// On redirige l'utilisateur s'il passer par l'url directe de la page
-if (PAGE_AUTORISEE != "true")
-{
-	header('location:../index.php');
-	exit();
-}
-
 /******** AFFICHAGE FORM DEFAULT ********/
 
 // VALEUR DEFAUT FORMULAIRE
@@ -110,6 +103,13 @@ if(isset($_POST['titre_salle']) && isset($_POST['description_salle']) && isset($
 	  	/* CHECK FILES */	  	
 	  	if (!empty($_FILES['photo_salle']['name']) && empty($msg_info))
 	  	{
+			// Récupération des dimensions de l'image (0 => int(width), 1 => int(height), 2=> ?, 3=> string(width=, height=), bits =>, channels =>, mime => string (image/mime))
+			$info_image = getimagesize($_FILES['photo_salle']['tmp_name']);
+			if ($info_image[0] != 640 && $info_image[1] != 423)
+			{
+				$msg_info .= "<p class='error'>Votre image doit faire 640 pixel de large et 423 pixels de haut</p>";
+			}	
+			  		
 	  		if(checkImgExt()) 
 	  		{
 	  			// Suppression de l'ancienne photo
@@ -117,7 +117,6 @@ if(isset($_POST['titre_salle']) && isset($_POST['description_salle']) && isset($
 				{
 					unlink('../'.$photo_bdd);
 				}
-
 	  			// On donne un nom unique au fichier à envoyer pour éviter d'en écraser un autre
 	  			$replace_nom_photo = array(" ", "(", ")", "@");
 	  			$nom_photo = str_replace($replace_nom_photo, '', $titre_salle."-".$_FILES['photo_salle']['name']);
@@ -310,7 +309,7 @@ foreach ($liste_salles as $salle) {
 			$td_salle .= "<td>".$value."</td>";	
 		}		
 	}
-	$td_salle .= "<td><a href='?action=modifier&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$salle['id_salle']."' class='btn btn-default'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
+	$td_salle .= "<td><a href='?action=modifier&id=".$salle['id_salle']."' class='btn btn-default btn-warning'><span class='glyphicon glyphicon-pencil'></span></a><a href='?action=supprimer&id=".$salle['id_salle']."' class='btn btn-default btn-danger'><span class='glyphicon glyphicon-remove-circle'></span></a></td>";	
 	$tr_salle .= "<tr>".$td_salle."</tr>";
 }
 

@@ -43,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action']=="suppression" && isset($_GET['id'
 include('../inc/header.inc.php');
 include('../inc/nav.inc.php');
 ?>
-<section id="section-gestion-membres">
+<section id="section-gestion-membres" class="section-back-office">
 	<div class="container">
 
 		<h1>Gestion des membres</h1>
@@ -83,8 +83,8 @@ include('../inc/nav.inc.php');
 						}
 
 						//ajout d'une colonne pour les actions modif /suppr
-						echo '<td><a href="?action=modification&id='. $ligne['id_membre'] .'" class="btn btn-warning" ><span class="glyphicon glyphicon-pencil"></span></a>';
-						echo '<a href="?action=suppression&id='. $ligne['id_membre'] .'"  class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>';
+						echo '<td><a href="?action=modification&id='. $ligne['id_membre'] .'" class="btn btn-default" ><span class="glyphicon glyphicon-pencil"></span></a>';
+						echo '<a href="?action=suppression&id='. $ligne['id_membre'] .'"  class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></a>';
 						echo "</td></tr>";
 					}
 					echo '</tbody>';
