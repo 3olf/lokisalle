@@ -1,3 +1,4 @@
 inc/init.inc.php
 /not_git/
-.htpasswd
+inc/.htpasswd
+libs/.htpasswd
