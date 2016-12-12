@@ -1,8 +1,11 @@
 <?php
 
 $menu_swap="";
+$menu_swap_right="";
+
+debug($_SESSION['utilisateur']); 
 if (userConnectedAdmin()) {
-  $menu_swap .= "<li ".active(URL.'admin/gestion_membres.php')."><a href='".URL."admin/gestion_membres.php'>Gestion membres</a></li>
+  $menu_swap_drop = "<li ".active(URL.'admin/gestion_membres.php')."><a href='".URL."admin/gestion_membres.php'>Gestion membres</a></li>
                 <li ".active(URL.'admin/gestion_avis.php')." ><a href='".URL."admin/gestion_avis.php'>Gestion avis</a></li>
                 <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commandes.php'>Gestion commandes</a></li>
                 <li ".active(URL.'admin/gestion_salles.php')." ><a href='".URL."admin/gestion_salles.php'>Gestion salles</a></li>
@@ -13,8 +16,10 @@ if(userConnected())
   $menu_swap .= "<li ".active(URL.'fiche_produit.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
                 <li ".active(URL.'panier.php')."><a href='".URL."panier.php'>Panier</a></li>
                 <li ".active(URL.'profil.php')." ><a href='".URL."profil.php'>Mon compte</a></li>
-                <li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>
-                <li><a href='#'><span class='glyphicon glyphicon-user'></span>".$_SESSION['utilisateur']['pseudo']."</a></li>";
+                ";
+
+  $menu_swap_right.="<li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>
+  <li><a href='#'><span class='glyphicon glyphicon-user'></span>".$_SESSION['utilisateur']['pseudo']."</a></li>";
 
 }
 else 
@@ -23,6 +28,7 @@ else
                 <li ".active(URL.'connexion.php')." ><a href='".URL."connexion.php'>Connexion</a></li>
                 <li ".active(URL.'inscription.php')." ><a href='".URL."inscription.php'>Inscription</a></li>";
 }
+debug($menu_swap_right); 
 ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -39,6 +45,38 @@ else
           <ul class="nav navbar-nav">
             <?= $menu_swap ?>
           </ul>
+
+<?php if (userConnectedAdmin()){ ?>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <?= $menu_swap_drop ?>
+
+              </ul>
+            </li>
+          </ul>
+<? }
+if (userConnected()){ ?>
+          <!--ul class="nav navbar-nav navbar-right">
+            <?= $menu_swap_right ?>
+          </ul-->
+
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <?= $menu_swap_drop ?>
+
+              </ul>
+            </li>
+          </ul>
+
+<?php  } ?>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
