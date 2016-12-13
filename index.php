@@ -8,7 +8,8 @@ $date_depart="";
 $prix=3000;   //le plus cher par defaut
 $capacite=0;
 $capacite_affichage = "toutes";
-$filtre=array("p.etat='libre'");
+$date_default = "p.date_arrivee > NOW()";
+$filtre=array("p.etat='libre'", "$date_default");
 
 
 if (isset($_GET['cat']) || isset($_GET['ville']) || isset($_GET['capacite']) || isset($_GET['prix']) || isset($_GET['date_arrivee']) || isset($_GET['date_depart'])){
@@ -70,14 +71,17 @@ if (isset($_GET['cat']) || isset($_GET['ville']) || isset($_GET['capacite']) || 
 	/******* TRI DATE ********/
 	if(empty($msg_info))
 	{
+
 		if(!empty($_GET['date_arrivee'])) 
 		{
+			array_splice($filtre, 1, 1);
 			$date_arrivee=$_GET['date_arrivee'];
 			$_GET['date_arrivee'] = date('Y-m-d H:i:s' ,strtotime($_GET['date_arrivee']));
 			array_push($filtre, "p.date_arrivee > '".$_GET['date_arrivee']."'");		
 		}
 		if(!empty($_GET['date_depart']))	
 		{
+			$date_default ="";
 			$date_depart=$_GET['date_depart'];
 			$_GET['date_depart'] = date('Y-m-d H:i:s' ,strtotime($_GET['date_depart']));
 			array_push($filtre, "p.date_depart < '".$_GET['date_depart']."'");						
@@ -85,6 +89,7 @@ if (isset($_GET['cat']) || isset($_GET['ville']) || isset($_GET['capacite']) || 
 	}
 }
 // Creation du filtre de requête
+//debug($filtre);
 $filtre="WHERE ".implode($filtre, " AND ");
 //debug($filtre);
 
@@ -187,7 +192,7 @@ include("inc/nav.inc.php");
 					JOIN salle s ON p.id_salle=s.id_salle
 					LEFT JOIN avis a ON a.id_salle=s.id_salle
 					$filtre
-					GROUP BY p.id_produit");
+					GROUP BY p.id_produit ORDER BY p.date_arrivee ASC");
 
 				//joindre avec la note moyenne !
 					  	echo "<div class='row'>";
@@ -221,6 +226,25 @@ include("inc/nav.inc.php");
 					  	}
 					echo "</div>";	
 	?>
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li>
+								<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li>
+								<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>	
 				</section>
         	</div>
 

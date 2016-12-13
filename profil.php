@@ -30,7 +30,7 @@ include("inc/nav.inc.php");
 					<?php echo $statut; ?>			
 				</div>
 				<div class="col-md-9 col-sm-12">
-					<h2>Historique de vos commandes</h2>
+					<h2>Réservations en cours</h2>
 					<table class="table table-striped table-bordered table-hover" id="table-liste-salles">
 						<thead>
 							<tr><?= $content_thead ?></tr>
@@ -39,7 +39,20 @@ include("inc/nav.inc.php");
 							<?= $tr_commandes_user ?>
 						</tbody>
 					</table>
-					<p class="pull-right"><strong>Montant total de vos achats</strong> : <?= $total_commandes ?> &euro;</p>				
+					<p class="pull-right"><strong>Montant total de vos réservation en cours</strong> : <?= $total_commandes ?> &euro;</p>
+					<div class="clearfix"></div>	
+					<hr>
+					<h2>Historique de vos réservations</h2>
+					<table class="table table-striped table-bordered table-hover" id="table-liste-salles">
+						<thead>
+							<tr><?= $content_thead ?></tr>
+						</thead>
+						<tbody>
+							<?= $tr_commandes_user_p ?>
+						</tbody>
+					</table>
+					<p class="pull-right"><strong>Montant total de vos réservations passées</strong> : <?= $total_commandes_p ?> &euro;</p>
+					<div class="clearfix"></div>										
 				</div>
 			</div>		
 		</div>

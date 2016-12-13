@@ -45,6 +45,16 @@
 				$findh4.css("line-height", tempH+"px");
 			});
 
+			// Position du footer lorsque body height < window height
+			var windowH = $(window).height();
+			var bodyH = $("body").height();
+			var footer = $("footer");
+			var section = $("section");
+			if(bodyH < windowH)
+			{
+				var sectionH = bodyH;
+				section.css("height", sectionH+2+"px");
+			}
 		});
 	</script>
 	</body>
