@@ -25,7 +25,13 @@ if(isset($_GET['action']) && $_GET['action'] == 'voir' && isset($_GET['id']))
 	/************* OPERATIONS AFFICHAGE ELEMENTS + AJOUT COMMENTAIRE *************/
 	if($verification >= 1)
 	{
-		$req = $pdo->prepare("SELECT s.titre_salle, s.description_salle, s.photo_salle, s.id_salle, s.categorie_salle, s.capacite_salle, s.adresse_salle, s.cp_salle, s.ville_salle, p.id_produit, p.id_salle, p.date_arrivee, p.date_depart, p.prix, p.etat, AVG(a.note) as note, COUNT(a.note) as nb_note FROM produit AS p JOIN salle AS s ON p.id_salle=s.id_salle LEFT JOIN avis AS a ON s.id_salle = a.id_salle WHERE p.id_produit = '$mon_id'");
+		$req = $pdo->prepare("
+			SELECT s.titre_salle, s.description_salle, s.photo_salle, s.id_salle, s.categorie_salle, s.capacite_salle, s.adresse_salle, s.cp_salle, s.ville_salle, p.id_produit, p.id_salle, p.date_arrivee, p.date_depart, p.prix, p.etat, AVG(a.note) as note, COUNT(a.note) as nb_note 
+			FROM produit AS p 
+			JOIN salle AS s ON p.id_salle=s.id_salle 
+			LEFT JOIN avis AS a ON s.id_salle = a.id_salle 
+			WHERE p.id_produit = '$mon_id'
+			");
 
 		$req->execute();	
 			

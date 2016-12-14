@@ -33,7 +33,7 @@ section, aside{margin-top:20px;}
 h1 + hr {border-color:#233142;}
 
 .section-back-office table a {margin:0 8px;}
-.btn, .btn-default, .btn-ok, .form-control, .input-group-addon {border-radius: 0px;}
+.btn, .btn-default, .btn-ok, .form-control, .input-group-addon, .pagination > li > a {border-radius: 0px!important;}
 
 
 /* DEBUG & MSG INFO */
@@ -64,6 +64,7 @@ footer p a {text-decoration: underline;}
 #section-boutique .description-produit {padding:5px 3px 10px 5px;background-color: #fbfbfb;}
 #section-boutique .description-produit p {padding:2px 0;}
 #section-boutique h3 {background-color: #fbfbfb;padding:6px 5px;}
+
 
 /* PAGE GESTION SALLE */
 #table-liste-salles img, #table-liste-produits img {max-width: 100px;}
@@ -137,6 +138,11 @@ hr.hr-page-produit {border-color:#233142;}
   border-color: #AC4C5E; /* rouge */
 }
 
+/* PAGINATION */
+.pagination > li > a {color:#AC4C5E;}
+.pagination > li:hover > a {color:white; background-color:#AC4C5E;}
+.pagination > li.disabled > a {background-color: #79192B; color:white; cursor:pointer;}
+.pagination > li.disabled:hover > a {background-color: #79192B; color:white; cursor:pointer;}
 
 /********************** MEDIA QUERY ***********************/
 /* INDEX / PAGE PRODUITS */

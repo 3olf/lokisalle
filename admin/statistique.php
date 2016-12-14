@@ -5,7 +5,7 @@ require_once("../inc/init.inc.php");
 $today= new DateTime(date('Y-m-d H:i:s'));
 $one_month_ago= new DateTime(date('Y-m-d H:i:s').'-1 month');
 $one_month_ago_string=$one_month_ago->format('Y-m-d H:i:s');
-debug($one_month_ago_string);
+//debug($one_month_ago_string);
 //preparation des requêtes
 $resultat_nb_avis=$pdo->query("SELECT COUNT(id_commande) FROM commande WHERE date_enregistrement>'$one_month_ago_string'");
 $nb_avis=$resultat_nb_avis->fetch(PDO::FETCH_NUM);

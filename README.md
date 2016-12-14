@@ -21,4 +21,4 @@ Thomas Gachet
 * Fil d'ariane ???  
 * Modification profil ???  
 * Autres produits : changer le tri aléatoire pour un tri "complémentaire" ???  
-* Index : pagination/slider produits  ???  
+* ~~Index : pagination/slider produits~~  

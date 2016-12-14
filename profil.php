@@ -27,7 +27,7 @@ include("inc/nav.inc.php");
 					<p>Email : <?php echo $email; ?></p>					
 					<p>Civilité : <?php echo $civilite; ?></p>					
 					<p>Membre depuis le : <?php echo $date_enregistrement; ?></p>					
-					<?php echo $statut; ?>			
+					<?php if($statut == 1) { echo $statut; }?>			
 				</div>
 				<div class="col-md-9 col-sm-12">
 					<h2>Réservations en cours</h2>

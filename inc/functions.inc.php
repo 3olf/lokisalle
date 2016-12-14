@@ -61,6 +61,16 @@ function active($url)
 	}
 }
 
+// FONCTION SCRIPT SUR PAGE ACTIVE
+function scriptActif($url)
+{
+	// $_SERVER['PHP_SELF'] => renvoie l'url en cours
+	if($_SERVER['PHP_SELF'] == $url) 
+	{
+		return true;
+	}	
+}
+
 // FONCTION VERIFICATION FORMAT IMAGE
 function checkImgExt() 
 {

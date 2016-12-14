@@ -14,8 +14,7 @@ if (userConnectedAdmin()) {
 }
 if(userConnected()) 
 {
-  $menu_swap .= "<li ".active(URL.'index.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
-                <li ".active(URL.'reservation.php')."><a href='".URL."reservation.php'>Réservation</a></li>";
+  $menu_swap .= "<li ".active(URL.'index.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>";
 
   $menu_swap_right.="<li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>
                     <li ".active(URL.'profil.php')."><a href='".URL."profil.php'><span class='glyphicon glyphicon-user'></span> ".$_SESSION['utilisateur']['pseudo']."</a></li>";
