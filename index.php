@@ -9,7 +9,6 @@ include("inc/nav.inc.php");
 
 ?>
     <div class="container">
-    <?php //debug($_SERVER['PHP_SELF']); ?>
         <h1 id="h1-index">Nos produits</h1>
         <hr>  
         <div class="row">

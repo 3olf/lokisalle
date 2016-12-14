@@ -17,7 +17,6 @@ include("inc/nav.inc.php");
 		<div class="container">
 			<h1>Profil</h1>
 			<hr>
-			<?php //echo debug($liste_commandes_user); ?>
 			<div class="row">
 				<div class="col-md-3 col-sm-12">
 					<h2>Vos informations</h2>

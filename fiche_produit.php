@@ -9,7 +9,6 @@ include("inc/nav.inc.php");
 ?>
 	<section id="section-fiche-produit">
 		<div class="container">
-		<?php //debug($retour); //debug($_SERVER['PHP_SELF']); ?>
 			<h1><?php echo mb_ucfirst($titre_salle) ?></h1>
 			<div id="note-produit">
 				<p class='avis-produit'><a href='#liste-commentaires'><?php echo $note_produit." (<span class='nb-avis'>".$nb_note." avis</span>)" ?></a></p>

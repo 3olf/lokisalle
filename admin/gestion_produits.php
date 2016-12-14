@@ -21,7 +21,6 @@ include("../inc/nav.inc.php");
 		<!-- debug et messages d'erreur -->
 		<div class="row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<?php //debug($_SERVER) ?>
 				<?php echo $msg_info ?>
 			</div>
 		</div>

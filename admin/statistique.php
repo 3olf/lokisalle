@@ -7,7 +7,7 @@ require_once("../inc/init.inc.php");
 $today = new DateTime(date('Y-m-d H:i:s'));
 $three_month_ago = new DateTime(date('Y-m-d H:i:s') . '-3 month');
 $three_month_ago_string = $three_month_ago->format('Y-m-d H:i:s');
-//debug($three_month_ago_string);
+
 //preparation des requêtes pour les 4 premiers panneaux
 //avis
 $resultat_nb_avis = $pdo->query("SELECT COUNT(id_avis) FROM avis WHERE date_enregistrement>'$three_month_ago_string'");
