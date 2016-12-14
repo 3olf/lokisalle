@@ -1,11 +1,7 @@
 <?php
 require_once("inc/init.inc.php");
 
-//si l'utilisateur est connecte, on le redirige
-if (userConnected()){
-	header('location:index.php');
-	exit();
-}
+
 
 //test sur données inscription
 
@@ -101,6 +97,11 @@ if (isset($_POST['nom']) && isset($_POST['prenom'])  && isset($_POST['mdp'])  &&
 	}
 }
 
+//Si l'utilisateur est connecte, on le redirige
+if (userConnected()){
+	header('location:index.php');
+	exit();
+}
 
 
 include("inc/header.inc.php");
@@ -117,7 +118,7 @@ include("inc/nav.inc.php");
 				<form class="form" method="POST" action="?action=inscription">
 					<div class="form-group">
 						<label for="email">Email address</label>
-						<input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $nom; ?>">
+						<input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<?php echo $email; ?>">
 					</div>
 					<div class="form-group">
 						<label for="mdp">Password</label>
@@ -129,15 +130,15 @@ include("inc/nav.inc.php");
 					</div>
 					<div class="form-group">
 						<label for="pseudo">Pseudo</label>
-						<input type="text" class="form-control" id="pseudo" placeholder="pseudo" name="pseudo" <?php echo $nom; ?>>
+						<input type="text" class="form-control" id="pseudo" placeholder="pseudo" name="pseudo" value="<?php echo $nom; ?>" >
 					</div>
 					<div class="form-group">
 						<label for="nom">Nom</label>
-						<input type="text" class="form-control" id="nom" placeholder="nom" name="nom" <?php echo $nom; ?>>
+						<input type="text" class="form-control" id="nom" placeholder="nom" name="nom" value="<?php echo $nom; ?>" >
 					</div>
 					<div class="form-group">
 						<label for="prenom">Prénom</label>
-						<input type="text" class="form-control" id="prenom" placeholder="prenom" name="prenom" <?php echo $nom; ?>>
+						<input type="text" class="form-control" id="prenom" placeholder="prenom" name="prenom" value="<?php echo $nom; ?>" >
 					</div>
 					<div class="radio">
 						<label class="radio-inline">

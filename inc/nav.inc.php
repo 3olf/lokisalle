@@ -9,17 +9,15 @@ if (userConnectedAdmin()) {
                 <li ".active(URL.'admin/gestion_avis.php')." ><a href='".URL."admin/gestion_avis.php'>Gestion avis</a></li>
                 <li ".active(URL.'admin/gestion_commandes.php')." ><a href='".URL."admin/gestion_commandes.php'>Gestion commandes</a></li>
                 <li ".active(URL.'admin/gestion_salles.php')." ><a href='".URL."admin/gestion_salles.php'>Gestion salles</a></li>
-                <li ".active(URL.'admin/gestion_produits.php')." ><a href='".URL."admin/gestion_produits.php'>Gestion produit</a></li>";                 
+                <li ".active(URL.'admin/gestion_produits.php')." ><a href='".URL."admin/gestion_produits.php'>Gestion produit</a></li>
+                <li ".active(URL.'admin/statistique.php')." ><a href='".URL."admin/statistique.php'>Statistiques</a></li>";                 
 }
 if(userConnected()) 
 {
-  $menu_swap .= "<li ".active(URL.'fiche_produit.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>
-                <li ".active(URL.'panier.php')."><a href='".URL."panier.php'>Panier</a></li>
-                <li ".active(URL.'profil.php')." ><a href='".URL."profil.php'>Mon compte</a></li>
-                ";
+  $menu_swap .= "<li ".active(URL.'index.php')."><a href='".URL."fiche_produit.php'>Nos produits</a></li>";
 
   $menu_swap_right.="<li><a href='".URL."connexion.php?action=deconnexion'>Deconnexion</a></li>
-  <li><a href='#'><span class='glyphicon glyphicon-user'></span>".$_SESSION['utilisateur']['pseudo']."</a></li>";
+                    <li ".active(URL.'profil.php')."><a href='".URL."profil.php'><span class='glyphicon glyphicon-user'></span> ".$_SESSION['utilisateur']['pseudo']."</a></li>";
 
 }
 else 
@@ -48,35 +46,21 @@ else
 
 <?php if (userConnectedAdmin()){ ?>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
+            <li class="dropdown <?php if(substr($_SERVER['PHP_SELF'], 0, 17) == URL.'admin/') { echo 'active'; } ?> ">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <?= $menu_swap_drop ?>
-
               </ul>
             </li>
           </ul>
-<? }
+<?php }
 if (userConnected()){ ?>
-          <!--ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">
             <?= $menu_swap_right ?>
-          </ul-->
-
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <?= $menu_swap_drop ?>
-
-              </ul>
-            </li>
           </ul>
-
-<?php  } ?>
+<?php  
+} 
+?>
         </div><!--/.nav-collapse -->
       </div>
     </nav>

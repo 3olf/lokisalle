@@ -13,5 +13,3 @@ $msg_info = "";
 // CONSTANTES
 define("URL", "/lokisalle/"); 	// Chemin racine site
 define("SERVER_ROOT", $_SERVER['DOCUMENT_ROOT'] );	// Chemin racine serveur
-
-define("PAGE_AUTORISEE", "true");

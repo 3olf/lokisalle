@@ -2,7 +2,6 @@
 require_once("inc/init.inc.php");
 if (isset($_GET['action']) && ($_GET['action']=='deconnexion')){
 	unset($_SESSION['utilisateur']);
-
 }
 
 if(userConnected()){
